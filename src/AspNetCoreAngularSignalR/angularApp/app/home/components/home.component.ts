@@ -11,21 +11,26 @@ import { HubConnection, HttpConnection } from '@aspnet/signalr-client';
 export class HomeComponent implements OnInit {
     private _hubConnection: HubConnection;
     public async: any;
+    message = '';
+    messages: string[] = [];
 
     constructor(private store: Store<any>) {
     }
 
-    public TriggerCallback(): void {
-        const data = 'testmessage';
+    public sendMessage(): void {
+        const data = `Sent: ${this.message}`;
+
         this._hubConnection.invoke('Send', data);
+        this.messages.push(data);
     }
 
     ngOnInit() {
         const httpConnection = new HttpConnection('http://localhost:5000/loopy');
         this._hubConnection = new HubConnection(httpConnection);
 
-        this._hubConnection.on('Send', data => {
-            console.log('Got notification: ' + data);
+        this._hubConnection.on('Send', (data: any) => {
+            const recieved = `Recieved: ${data}`;
+            this.messages.push(recieved);
         });
 
         this._hubConnection.start()
