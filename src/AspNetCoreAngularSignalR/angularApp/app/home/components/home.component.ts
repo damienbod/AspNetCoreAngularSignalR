@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        const httpConnection = new HttpConnection('http://localhost:5000/loopy');
+        const httpConnection = new HttpConnection('/loopy');
         this._hubConnection = new HubConnection(httpConnection);
 
         this._hubConnection.on('Send', (data: any) => {
