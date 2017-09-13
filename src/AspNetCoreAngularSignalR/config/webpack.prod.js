@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ngToolsWebpack = require('@ngtools/webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const helpers = require('./webpack.helpers');
 
@@ -97,14 +98,11 @@ module.exports = {
             { root: ROOT }
         ),
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            output: {
-                comments: false
-            },
-            sourceMap: false
+        new UglifyJSPlugin({
+            parallel: {
+                cache: true,
+                workers: 2
+            }
         }),
         new webpack.optimize.CommonsChunkPlugin(
             {
