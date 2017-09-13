@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { HubConnection, HttpConnection } from '@aspnet/signalr-client';
+import { HubConnection } from '@aspnet/signalr-client';
 
 @Component({
     selector: 'app-home-component',
@@ -14,7 +13,7 @@ export class HomeComponent implements OnInit {
     message = '';
     messages: string[] = [];
 
-    constructor(private store: Store<any>) {
+    constructor() {
     }
 
     public sendMessage(): void {
