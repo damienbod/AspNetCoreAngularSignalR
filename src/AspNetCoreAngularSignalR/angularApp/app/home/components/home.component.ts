@@ -25,8 +25,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        const httpConnection = new HttpConnection('/loopy');
-        this._hubConnection = new HubConnection(httpConnection);
+        this._hubConnection = new HubConnection('/loopy');
 
         this._hubConnection.on('Send', (data: any) => {
             const recieved = `Recieved: ${data}`;
