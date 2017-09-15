@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
-namespace AspNetCoreSignalr.SignalRHubs
+namespace AspNetCoreAngularSignalR.SignalRHubs
 {
     public class LoopyHub : Hub
     {

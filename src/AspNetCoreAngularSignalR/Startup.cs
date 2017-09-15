@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AspNetCoreSignalr.SignalRHubs;
+using AspNetCoreAngularSignalR.SignalRHubs;
+using AspNetCoreAngularSignalR.Controllers;
 
 namespace Angular2WebpackVisualStudio
 {
@@ -39,6 +40,7 @@ namespace Angular2WebpackVisualStudio
                     });
             });
 
+            services.AddSingleton<NewsProvider>();
             services.AddSignalR();
             services.AddMvc();
         }
@@ -72,6 +74,7 @@ namespace Angular2WebpackVisualStudio
             app.UseSignalR(routes =>
             {
                 routes.MapHub<LoopyHub>("loopy");
+                routes.MapHub<NewsHub>("news");
             });
             app.UseMvc(routes =>
             {
