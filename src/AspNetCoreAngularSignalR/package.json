@@ -45,7 +45,7 @@
     "rxjs": "5.4.3",
     "zone.js": "0.8.17",
     "msgpack5": "^3.5.1",
-    "@aspnet/signalr-client": "1.0.0-alpha1-26985"
+    "@aspnet/signalr-client": "1.0.0-alpha1-final"
   },
   "devDependencies": {
     "@ngtools/webpack": "^1.6.2",
