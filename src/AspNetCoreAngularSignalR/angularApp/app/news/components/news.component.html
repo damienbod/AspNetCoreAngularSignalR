@@ -16,27 +16,29 @@
         </form>
         <button class="btn btn-primary" (click)="join()">Join</button>
     </div>
-    <div class="row" *ngIf="newsItems.length > 0">
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>header</th>
-                        <th>Text</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of newsItems; let i = index">
-                        <td>{{i + 1}}</td>
-                        <td>{{item.Header}}</td>
-                        <td>{{item.NewsText}}</td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <div class="row" *ngIf="(newsState$|async)?.newsItems.length > 0">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>header</th>
+                            <th>Text</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of (newsState$|async)?.newsItems; let i = index">
+                            <td>{{i + 1}}</td>
+                            <td>{{item.Header}}</td>
+                            <td>{{item.NewsText}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="row" *ngIf="newsItems.length <= 0">
-        <span>No news items</span>
-    </div>
+ 
+        <div class="row" *ngIf="(newsState$|async)?.length <= 0">
+            <span>No news items</span>
+        </div>
 </div>
