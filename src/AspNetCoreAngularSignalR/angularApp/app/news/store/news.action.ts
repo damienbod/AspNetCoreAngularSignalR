@@ -4,6 +4,7 @@ import { NewsItem } from '../models/news-item';
 export const JOIN_GROUP = '[news] JOIN_GROUP';
 export const LEAVE_GROUP = '[news] LEAVE_GROUP';
 export const SEND_NEWS_ITEM = '[news] SEND_NEWS_ITEM';
+export const SEND_NEWS_ITEM_COMPLETE = '[news] SEND_NEWS_ITEM_COMPLETE';
 export const RECIEVED_NEWS_ITEM = '[news] RECIEVED_NEWS_ITEM';
 export const RECIEVED_GROUP_JOINED = '[news] RECIEVED_GROUP_JOINED';
 export const RECIEVED_GROUP_LEFT = '[news] RECIEVED_GROUP_LEFT';
@@ -22,6 +23,12 @@ export class LeaveGroupAction implements Action {
 
 export class SendNewsItemAction implements Action {
     readonly type = SEND_NEWS_ITEM;
+
+    constructor(public newsItem: NewsItem) { }
+}
+
+export class SendNewsItemActionComplete implements Action {
+    readonly type = SEND_NEWS_ITEM_COMPLETE;
 
     constructor(public newsItem: NewsItem) { }
 }
@@ -48,6 +55,7 @@ export type Actions
     = JoinGroupAction
     | LeaveGroupAction
     | SendNewsItemAction
+    | SendNewsItemActionComplete
     | ReceivedItemAction
     | ReceivedGroupJoinedAction
     | ReceivedGroupLeftAction;

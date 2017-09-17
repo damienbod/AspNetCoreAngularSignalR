@@ -15,8 +15,9 @@ export class NewsService {
         this.init();
     }
 
-    public send(newsItem: NewsItem): void {
+    public send(newsItem: NewsItem): NewsItem {
         this._hubConnection.invoke('Send', newsItem);
+        return newsItem;
         // this.newsItems.push(this.newsItem);
     }
 
@@ -37,11 +38,11 @@ export class NewsService {
         });
 
         this._hubConnection.on('JoinGroup', (data: string) => {
-            this.store.dispatch(new NewsActions.JoinGroupAction(data));
+            this.store.dispatch(new NewsActions.ReceivedGroupJoinedAction(data));
         });
 
         this._hubConnection.on('LeaveGroup', (data: string) => {
-            this.store.dispatch(new NewsActions.LeaveGroupAction(data));
+            this.store.dispatch(new NewsActions.ReceivedGroupLeftAction(data));
         });
 
         this._hubConnection.start()

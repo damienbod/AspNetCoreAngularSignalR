@@ -25,8 +25,8 @@ export class NewsComponent implements OnInit {
 
     public sendNewsItem(): void {
         this.newsItem.NewsGroup = this.group;
-        this.newsService.send(this.newsItem);
-        // this.store.dispatch(new NewsActions.SendNewsItemAction(this.newsItem));
+        // this.newsService.send(this.newsItem);
+        this.store.dispatch(new NewsActions.SendNewsItemAction(this.newsItem));
     }
 
     public join(): void {

@@ -14,17 +14,11 @@ import { NewsService } from '../news.service';
 @Injectable()
 export class NewsEffects {
 
-    // @Effect() getAllPerRegion$: Observable<Action> = this.actions$.ofType(newsAction.SEND_NEWS_ITEM)
-    //    .switchMap((action: newsAction.SendNewsItemAction) =>
-    //        this.newsService.send(action.newsItem)
-    //            .map((data: NewsItem) => {
-    //                const region = { name: action.newsItem, expanded: true, countries: data};
-    //                return new countryAction.SelectRegionCompleteAction(region);
-    //            })
-    //            .catch((error: any) => {
-    //                return of({ type: 'getAllPerRegion$' })
-    //            })
-    //    );
+    @Effect() sendNewItem$: Observable<Action> = this.actions$.ofType(newsAction.SEND_NEWS_ITEM)
+        .switchMap((action: newsAction.SendNewsItemAction) => {
+            this.newsService.send(action.newsItem);
+            return Observable.of(new newsAction.SendNewsItemActionComplete(action.newsItem));
+        });
 
     constructor(
         private newsService: NewsService,

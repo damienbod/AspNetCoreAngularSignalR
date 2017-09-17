@@ -16,15 +16,15 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
         public async Task JoinGroup(string groupName)
         {
             await Groups.AddAsync(Context.ConnectionId, groupName);
-
-            await Clients.Group(groupName).InvokeAsync("JoinGroup", $"{Context.ConnectionId} joined {groupName}");
+            // $"{Context.ConnectionId} joined {groupName}"
+            await Clients.Group(groupName).InvokeAsync("JoinGroup", groupName);
         }
 
         public async Task LeaveGroup(string groupName)
         {
             await Groups.RemoveAsync(Context.ConnectionId, groupName);
 
-            await Clients.Group(groupName).InvokeAsync("LeaveGroup", $"{Context.ConnectionId} left {groupName}");
+            await Clients.Group(groupName).InvokeAsync("LeaveGroup", groupName);
         }
     }
 }
