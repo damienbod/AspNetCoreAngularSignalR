@@ -33,7 +33,7 @@ export class NewsService {
         this._hubConnection = new HubConnection('/looney');
 
         this._hubConnection.on('Send', (newsItem: NewsItem) => {
-            this.store.dispatch(new NewsActions.SendNewsItemAction(newsItem));
+            this.store.dispatch(new NewsActions.ReceivedItemAction(newsItem));
         });
 
         this._hubConnection.on('JoinGroup', (data: string) => {

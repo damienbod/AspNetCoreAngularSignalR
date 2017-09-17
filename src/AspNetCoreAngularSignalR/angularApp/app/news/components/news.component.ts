@@ -20,6 +20,7 @@ export class NewsComponent implements OnInit {
     constructor(private store: Store<any>, private newsService: NewsService) {
         this.newsState$ = this.store.select<NewsState>(state => state.news.newsitems);
         this.newsItem = new NewsItem();
+        this.newsItem.AddData('header', '', 'me', this.group);
     }
 
     public sendNewsItem(): void {
