@@ -11,13 +11,13 @@ export const RECIEVED_GROUP_LEFT = '[news] RECIEVED_GROUP_LEFT';
 export class JoinGroupAction implements Action {
     readonly type = JOIN_GROUP;
 
-    constructor(public newsItem: NewsItem) { }
+    constructor(public group: string) { }
 }
 
 export class LeaveGroupAction implements Action {
     readonly type = LEAVE_GROUP;
 
-    constructor(public newsItem: NewsItem) { }
+    constructor(public group: string) { }
 }
 
 export class SendNewsItemAction implements Action {
@@ -35,13 +35,13 @@ export class ReceivedItemAction implements Action {
 export class ReceivedGroupJoinedAction implements Action {
     readonly type = RECIEVED_GROUP_JOINED;
 
-    constructor(public newsItem: NewsItem) { }
+    constructor(public group: string) { }
 }
 
 export class ReceivedGroupLeftAction implements Action {
     readonly type = RECIEVED_GROUP_LEFT;
 
-    constructor(public newsItem: NewsItem) { }
+    constructor(public group: string) { }
 }
 
 export type Actions
