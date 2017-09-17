@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-
 namespace AspNetCoreAngularSignalR.SignalRHubs
 {
     public class NewssHub : Hub
@@ -12,13 +11,6 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
         public Task Send(NewsItem newsItem)
         {
             return Clients.Group(newsItem.NewsGroup).InvokeAsync("Send", newsItem);
-        }
-
-        public async Task CreateGroup(string groupName)
-        {
-            await Groups.AddAsync(Context.ConnectionId, groupName);
-
-            await Clients.Group(groupName).InvokeAsync("CreateGroup", $"{Context.ConnectionId} joined {groupName}");
         }
 
         public async Task JoinGroup(string groupName)
