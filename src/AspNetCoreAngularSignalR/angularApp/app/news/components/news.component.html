@@ -6,11 +6,11 @@
         <form class="form-inline" (ngSubmit)="sendNewsItem()" #newsItemForm="ngForm">
             <div class="form-group">
                 <label class="sr-only" for="header">Header</label>
-                <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="newsItem.header" required>
+                <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="newsItem.Header" required>
             </div>
             <div class="form-group">
                 <label class="sr-only" for="header">Text</label>
-                <input type="text" class="form-control" id="newsText" placeholder="your newsText..." name="newsText" [(ngModel)]="newsItem.newsText" required>
+                <input type="text" class="form-control" id="newsText" placeholder="your newsText..." name="newsText" [(ngModel)]="newsItem.NewsText" required>
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!newsItemForm.valid">Send SignalR News message</button>
         </form>
@@ -29,8 +29,8 @@
                 <tbody>
                     <tr *ngFor="let item of newsItems; let i = index">
                         <td>{{i + 1}}</td>
-                        <td>{{item.header}}</td>
-                        <td>{{item.newsText}}</td>
+                        <td>{{item.Header}}</td>
+                        <td>{{item.NewsText}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -23,7 +23,9 @@ export class NewsComponent implements OnInit {
 
     public sendNewsItem(): void {
         this._hubConnection.invoke('Send', this.newsItem);
-        this.newsItems.push(this.newsItem);
+        console.log('sendNewsItem.Send')
+        console.log(this.newsItem)
+        //this.newsItems.push(this.newsItem);
     }
 
     public join(): void {
@@ -35,7 +37,13 @@ export class NewsComponent implements OnInit {
         this._hubConnection = new HubConnection('/looney');
 
         this._hubConnection.on('Send', (data: NewsItem) => {
+            console.log('_hubConnection.on.Send')
+            console.log(data)
             this.newsItems.push(data);
+        });
+
+        this._hubConnection.on('JoinGroup', (data: string) => {
+            console.log('joined: ' + data)
         });
 
         this._hubConnection.start()
