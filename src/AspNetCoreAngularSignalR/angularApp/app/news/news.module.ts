@@ -9,14 +9,19 @@ import { NewsRoutes } from './news.routes';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-
+import { NewsEffects } from './store/news.effects';
+import { newsReducer } from './store/news.reducer';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         HttpClientModule,
-        NewsRoutes
+        NewsRoutes,
+        StoreModule.forFeature('news', {
+            newsitems: newsReducer,
+        }),
+        EffectsModule.forFeature([NewsEffects])
     ],
 
     declarations: [

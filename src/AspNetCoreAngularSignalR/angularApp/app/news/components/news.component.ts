@@ -25,7 +25,7 @@ export class NewsComponent implements OnInit {
         this._hubConnection.invoke('Send', this.newsItem);
         console.log('sendNewsItem.Send')
         console.log(this.newsItem)
-        //this.newsItems.push(this.newsItem);
+        // this.newsItems.push(this.newsItem);
     }
 
     public join(): void {

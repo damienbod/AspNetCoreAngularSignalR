@@ -2,20 +2,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HubConnection } from '@aspnet/signalr-client';
 import { NewsItem } from './models/news-item';
+import { Store } from '@ngrx/store';
+import { NewsState } from './store/news.state';
+import * as NewsActions from './store/news.action';
 
 @Injectable()
 export class NewsService {
 
     private _hubConnection: HubConnection;
 
-    constructor() {
+    constructor(private store: Store<any>) {
         this.init();
     }
 
     public send(newsItem: NewsItem): void {
         this._hubConnection.invoke('Send', newsItem);
-        // TODO send event
-        //this.newsItems.push(this.newsItem);
+        // this.newsItems.push(this.newsItem);
     }
 
     public joinGroup(group: string): void {
@@ -26,24 +28,20 @@ export class NewsService {
         this._hubConnection.invoke('LeaveGroup', group);
     }
 
-    init() {
+    private init() {
 
         this._hubConnection = new HubConnection('/looney');
 
-        this._hubConnection.on('Send', (data: NewsItem) => {
-            console.log('_hubConnection.on.Send')
-            console.log(data)
-            // TODO send event this.newsItems.push(data);
+        this._hubConnection.on('Send', (newsItem: NewsItem) => {
+            this.store.dispatch(new NewsActions.SendNewsItemAction(newsItem));
         });
 
         this._hubConnection.on('JoinGroup', (data: string) => {
-            // TODO send event
-            console.log('joined: ' + data)
+            this.store.dispatch(new NewsActions.JoinGroupAction(data));
         });
 
         this._hubConnection.on('LeaveGroup', (data: string) => {
-            // TODO send event
-            console.log('left: ' + data)
+            this.store.dispatch(new NewsActions.LeaveGroupAction(data));
         });
 
         this._hubConnection.start()
