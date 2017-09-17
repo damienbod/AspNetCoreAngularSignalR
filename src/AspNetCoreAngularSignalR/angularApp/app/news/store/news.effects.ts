@@ -20,6 +20,18 @@ export class NewsEffects {
             return Observable.of(new newsAction.SendNewsItemActionComplete(action.newsItem));
         });
 
+    @Effect() joinGroup$: Observable<Action> = this.actions$.ofType(newsAction.JOIN_GROUP)
+        .switchMap((action: newsAction.JoinGroupAction) => {
+            this.newsService.joinGroup(action.group);
+            return Observable.of(new newsAction.JoinGroupActionComplete(action.group));
+        });
+
+    @Effect() leaveGroup$: Observable<Action> = this.actions$.ofType(newsAction.LEAVE_GROUP)
+        .switchMap((action: newsAction.LeaveGroupAction) => {
+            this.newsService.leaveGroup(action.group);
+            return Observable.of(new newsAction.LeaveGroupActionComplete(action.group));
+        });
+
     constructor(
         private newsService: NewsService,
         private actions$: Actions
