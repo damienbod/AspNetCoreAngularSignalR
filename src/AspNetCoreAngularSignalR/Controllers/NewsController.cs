@@ -1,5 +1,6 @@
 ﻿using AspNetCoreAngularSignalR.SignalRHubs;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AspNetCoreAngularSignalR.Controllers
 {
@@ -27,14 +28,14 @@ namespace AspNetCoreAngularSignalR.Controllers
 
         [HttpPost]
         [Route("addgroup")]
-        public IActionResult AddGroup(string group)
+        public async Task<IActionResult> AddGroupAsync(string group)
         {
             if(string.IsNullOrEmpty(group))
             {
                 return BadRequest("null");
             }
             _newsProvider.AddGroup(group);
-            _newsHub.CreateGroup(group);
+            await _newsHub.CreateGroup(group);
             return Created("api/news/addgroup", group);
         }
 
