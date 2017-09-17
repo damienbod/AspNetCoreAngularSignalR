@@ -16,7 +16,7 @@ export class NewsComponent implements OnInit {
 
     constructor() {
         this.newsItem = new NewsItem();
-        this.newsItem.AddData('header', 'text', 'author', 'group');
+        this.newsItem.AddData('header', 'text', 'author', 'myGroup');
 
         this.newsItems = new Array<NewsItem>();
     }
@@ -24,6 +24,10 @@ export class NewsComponent implements OnInit {
     public sendNewsItem(): void {
         this._hubConnection.invoke('Send', this.newsItem);
         this.newsItems.push(this.newsItem);
+    }
+
+    public join(): void {
+        this._hubConnection.invoke('JoinGroup', 'myGroup');
     }
 
     ngOnInit() {
