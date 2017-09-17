@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HubConnection } from '@aspnet/signalr-client';
+import { NewsItem } from '../models/news-item';
 
 @Component({
     selector: 'app-news-component',
@@ -10,25 +11,27 @@ import { HubConnection } from '@aspnet/signalr-client';
 export class NewsComponent implements OnInit {
     private _hubConnection: HubConnection;
     public async: any;
-    message = '';
-    messages: string[] = [];
+    newsItem: NewsItem;
+    newsItems: NewsItem[];
 
     constructor() {
+        this.newsItem = new NewsItem();
+        this.newsItem.AddData('header', 'text', 'author', 'group');
+
+        this.newsItems = new Array<NewsItem>();
     }
 
-    public sendMessage(): void {
-        const data = `Sent: ${this.message}`;
-
-        this._hubConnection.invoke('Send', data);
-        this.messages.push(data);
+    public sendNewsItem(): void {
+        this._hubConnection.invoke('Send', this.newsItem);
+        this.newsItems.push(this.newsItem);
     }
 
     ngOnInit() {
-        this._hubConnection = new HubConnection('/loopy');
 
-        this._hubConnection.on('Send', (data: any) => {
-            const recieved = `Recieved: ${data}`;
-            this.messages.push(recieved);
+        this._hubConnection = new HubConnection('/looney');
+
+        this._hubConnection.on('Send', (data: NewsItem) => {
+            this.newsItems.push(data);
         });
 
         this._hubConnection.start()
@@ -39,5 +42,4 @@ export class NewsComponent implements OnInit {
                 console.log('Error while establishing connection')
             });
     }
-
 }

@@ -8,25 +8,25 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreAngularSignalR.SignalRHubs
 {
-    public class NewsHub : Hub
+    public class NewssHub : Hub
     {
         private readonly NewsProvider _newsProvider;
 
-        public NewsHub(NewsProvider newsProvider)
+        public NewssHub(NewsProvider newsProvider)
         {
             _newsProvider = newsProvider;
         }
 
         private List<string> groups = new List<string>();
 
-        public Task Send(string groupName, NewsItem newsItem)
+        public Task Send(NewsItem newsItem)
         {
-            if(!_newsProvider.GroupExists(groupName))
+            if(!_newsProvider.GroupExists(newsItem.NewsGroup))
             {
                 throw new Exception("Group does not exist");
             }
 
-            return Clients.Group(groupName).InvokeAsync("Send", newsItem);
+            return Clients.Group(newsItem.NewsGroup).InvokeAsync("Send", newsItem);
         }
 
         public async Task CreateGroup(string groupName)
@@ -52,7 +52,7 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
 
             await Clients.Group(groupName).InvokeAsync("Send", $"{Context.ConnectionId} joined {groupName}");
 
-            var news = _newsProvider.GetAllNewItems(groupName).OrderByDescending(o => o.Created);
+            var news = _newsProvider.GetAllNewItems(groupName); //.OrderByDescending(o => o.Created);
             foreach (var item in news)
             {
                 await Clients.Client(Context.ConnectionId).InvokeAsync("Send", item);

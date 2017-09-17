@@ -9,12 +9,12 @@ namespace AspNetCoreAngularSignalR.Controllers
     public class NewsController : Controller
     {
         private readonly NewsProvider _newsProvider;
-        private readonly NewsHub _newsHub;
+        private readonly NewssHub _newssHub;
 
-        public NewsController(NewsProvider newsProvider, NewsHub newsHub)
+        public NewsController(NewsProvider newsProvider, NewssHub newssHub)
         {
             _newsProvider = newsProvider;
-            _newsHub = newsHub;
+            _newssHub = newssHub;
         }
 
         [HttpPost]
@@ -22,7 +22,7 @@ namespace AspNetCoreAngularSignalR.Controllers
         {
             _newsProvider.CreateNewItem(newsItem);
 
-            _newsHub.Send(newsItem.NewsGroup, newsItem);
+            _newssHub.Send(newsItem);
             return Created("api/news", newsItem);
         }
 
@@ -35,7 +35,7 @@ namespace AspNetCoreAngularSignalR.Controllers
                 return BadRequest("null");
             }
             _newsProvider.AddGroup(group);
-            await _newsHub.CreateGroup(group);
+            await _newssHub.CreateGroup(group);
             return Created("api/news/addgroup", group);
         }
 

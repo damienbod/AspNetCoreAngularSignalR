@@ -52,7 +52,8 @@ namespace Angular2WebpackVisualStudio
             loggerFactory.AddDebug();
 
             var angularRoutes = new[] {
-                 "/home"
+                 "/home",
+                 "/news"
              };
 
             app.Use(async (context, next) =>
@@ -74,8 +75,9 @@ namespace Angular2WebpackVisualStudio
             app.UseSignalR(routes =>
             {
                 routes.MapHub<LoopyHub>("loopy");
-                routes.MapHub<NewsHub>("news");
+                routes.MapHub<NewssHub>("looney");
             });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
