@@ -22,9 +22,8 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
 
         public async Task LeaveGroup(string groupName)
         {
-            await Groups.RemoveAsync(Context.ConnectionId, groupName);
-
             await Clients.Group(groupName).InvokeAsync("LeaveGroup", groupName);
+            await Groups.RemoveAsync(Context.ConnectionId, groupName);
         }
     }
 }

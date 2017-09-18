@@ -14,7 +14,7 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
         case newsAction.RECIEVED_GROUP_JOINED:
             return Object.assign({}, state, {
                 newsItems: state.newsItems,
-                groups: state.groups.concat(action.group)
+                groups: (state.groups.indexOf(action.group) > -1) ? state.groups : state.groups.concat(action.group)
             });
 
         case newsAction.RECIEVED_NEWS_ITEM:
@@ -24,9 +24,16 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
             });
 
         case newsAction.RECIEVED_GROUP_LEFT:
+            const data = [];
+            for (const entry of state.groups) {
+                if (entry !== action.group) {
+                    data.push(entry);
+                }
+            }
+            console.log(data);
             return Object.assign({}, state, {
                 newsItems: state.newsItems,
-                groups: state.groups.filter(item => item !== action.group),
+                groups: data
             });
         default:
             return state;
