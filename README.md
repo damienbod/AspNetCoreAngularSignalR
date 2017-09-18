@@ -1,5 +1,12 @@
 # SignalR with Angular
 
+## blogs:
+
+https://damienbod.com/2017/09/12/getting-started-with-signalr-using-asp-net-core-and-angular/
+
+https://damienbod.com/2017/09/18/signalr-group-messages-with-ngrx-and-angular/
+
+
 https://github.com/aspnet/SignalR#readme
 
 ## npm feed
