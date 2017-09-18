@@ -1,0 +1,62 @@
+﻿<div class="container-fluid">
+
+    <h1>Send some basic news messages</h1>
+
+    <div class="row">
+        <form class="form-inline" >
+            <div class="form-group">
+                <label for="header">Group</label>
+                <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="group" required>
+            </div>
+            <button class="btn btn-primary" (click)="join()">Join</button>
+            <button class="btn btn-primary" (click)="leave()">Leave</button>
+        </form>
+    </div>
+    <hr />
+    <div class="row">
+        <form class="form" (ngSubmit)="sendNewsItem()" #newsItemForm="ngForm">
+            <div class="form-group">
+                <label for="header">Header</label>
+                <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="newsItem.Header" required>
+            </div>
+            <div class="form-group">
+                <label for="newsText">Text</label>
+                <input type="text" class="form-control" id="newsText" placeholder="your newsText..." name="newsText" [(ngModel)]="newsItem.NewsText" required>
+            </div>
+            <div class="form-group">
+                <label for="newsText">Author</label>
+                <input type="text" class="form-control" id="author" placeholder="your newsText..." name="author" [(ngModel)]="newsItem.Author" required>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!newsItemForm.valid">Send News to: {{group}}</button>
+        </form>
+    </div>
+
+    <div class="row" *ngIf="(newsState$|async)?.newsItems.length > 0">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>header</th>
+                        <th>Text</th>
+                        <th>Author</th>
+                        <th>roup</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of (newsState$|async)?.newsItems; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{item.Header}}</td>
+                        <td>{{item.NewsText}}</td>
+                        <td>{{item.Author}}</td>
+                        <td>{{item.NewsGroup}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+ 
+    <div class="row" *ngIf="(newsState$|async)?.length <= 0">
+        <span>No news items</span>
+    </div>
+</div>
