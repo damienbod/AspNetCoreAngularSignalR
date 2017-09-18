@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreAngularSignalR.SignalRHubs
 {
-    public class NewssHub : Hub
+    public class NewsHub : Hub
     {
         private List<string> groups = new List<string>();
 

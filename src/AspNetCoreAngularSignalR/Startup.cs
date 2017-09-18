@@ -75,7 +75,7 @@ namespace Angular2WebpackVisualStudio
             app.UseSignalR(routes =>
             {
                 routes.MapHub<LoopyHub>("loopy");
-                routes.MapHub<NewssHub>("looney");
+                routes.MapHub<NewsHub>("looney");
             });
 
             app.UseMvc(routes =>
