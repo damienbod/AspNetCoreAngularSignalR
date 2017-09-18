@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
         this._hubConnection = new HubConnection('/loopy');
 
         this._hubConnection.on('Send', (data: any) => {
-            const recieved = `Recieved: ${data}`;
-            this.messages.push(recieved);
+            const received = `Received: ${data}`;
+            this.messages.push(received);
         });
 
         this._hubConnection.start()
