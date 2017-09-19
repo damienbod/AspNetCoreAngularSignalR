@@ -18,7 +18,6 @@ export class NewsService {
     public send(newsItem: NewsItem): NewsItem {
         this._hubConnection.invoke('Send', newsItem);
         return newsItem;
-        // this.newsItems.push(this.newsItem);
     }
 
     public joinGroup(group: string): void {
@@ -47,7 +46,6 @@ export class NewsService {
 
         this._hubConnection.start()
             .then(() => {
-                // TODO send event
                 console.log('Hub connection started')
             })
             .catch(err => {
