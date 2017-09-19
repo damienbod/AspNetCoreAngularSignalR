@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AspNetCoreAngularSignalR.SignalRHubs
