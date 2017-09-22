@@ -1,4 +1,7 @@
-# SignalR with Angular
+# SignalR with Angular and ASP.NET Core
+
+[![Build status](https://ci.appveyor.com/api/projects/status/dffu581x88buh4dl?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoreangularsignalr)
+
 
 ## blogs:
 
