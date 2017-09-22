@@ -45,13 +45,4 @@ Global
 		{B51B6236-C279-42C0-B7CE-234F6D5690BD}.Release|x86.ActiveCfg = Release|Any CPU
 		{B51B6236-C279-42C0-B7CE-234F6D5690BD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B51B6236-C279-42C0-B7CE-234F6D5690BD} = {262E4648-178C-4184-A629-47B09F3C426D}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1A639680-DDC1-4CEF-B649-1CE3A1F629FD}
-	EndGlobalSection
 EndGlobal
