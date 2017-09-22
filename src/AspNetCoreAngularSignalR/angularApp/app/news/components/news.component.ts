@@ -13,11 +13,17 @@ import { NewsItem } from '../models/news-item';
 export class NewsComponent implements OnInit {
     public async: any;
     newsItem: NewsItem;
+    newsItems: NewsItem[];
     group = 'group';
     newsState$: Observable<NewsState>;
 
     constructor(private store: Store<any>) {
         this.newsState$ = this.store.select<NewsState>(state => state.news.newsitems);
+
+        this.store.select<NewsState>(state => state.news.newsitems).subscribe((o: NewsState) => {
+            this.newsItems = o.newsItems;
+        });
+
         this.newsItem = new NewsItem();
         this.newsItem.AddData('', '', 'me', this.group);
     }
