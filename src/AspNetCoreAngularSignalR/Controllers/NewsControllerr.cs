@@ -20,8 +20,12 @@ namespace AspNetCoreAngularSignalR.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddGroup([FromBody] string group)
+        public IActionResult AddGroup([FromQuery] string group)
         {
+            if (string.IsNullOrEmpty(group))
+            {
+                return BadRequest();
+            }
             _newsStore.AddGroup(group);
             return Created("AddGroup", group);
         }
