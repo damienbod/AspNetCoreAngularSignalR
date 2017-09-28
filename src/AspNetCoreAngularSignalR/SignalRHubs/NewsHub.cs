@@ -24,6 +24,12 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
             return Clients.Group(newsItem.NewsGroup).InvokeAsync("Send", newsItem);
         }
 
+        public async Task CreateGroup(string groupName)
+        {
+            _newsStore.AddGroup(groupName);
+            await Groups.AddAsync(Context.ConnectionId, groupName);
+        }
+
         public async Task JoinGroup(string groupName)
         {
             if (!_newsStore.GroupExists(groupName))
