@@ -10,5 +10,7 @@ namespace AspNetCoreAngularSignalR.Providers
         { }
 
         public DbSet<NewsItemEntity> NewsItemEntities { get; set; }
+
+        public DbSet<NewsGroup> NewsGroups { get; set; }
     }
 }

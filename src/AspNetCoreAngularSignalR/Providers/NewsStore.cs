@@ -30,6 +30,14 @@ namespace AspNetCoreAngularSignalR.Providers
             if (GroupExists(item.NewsGroup))
             {
                 _newsItems.Add(item);
+                _newsContext.NewsItemEntities.Add(new NewsItemEntity
+                {
+                    Header = item.Header,
+                    Author = item.Author,
+                    NewsGroup = item.NewsGroup,
+                    NewsText = item.NewsText
+                });
+                _newsContext.SaveChanges();
             }
             else
             {

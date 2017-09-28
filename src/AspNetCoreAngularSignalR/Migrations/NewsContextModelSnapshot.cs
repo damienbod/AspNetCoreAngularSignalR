@@ -18,6 +18,18 @@ namespace AspNetCoreAngularSignalR.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
+            modelBuilder.Entity("AspNetCoreAngularSignalR.Providers.NewsGroup", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NewsGroups");
+                });
+
             modelBuilder.Entity("AspNetCoreAngularSignalR.Providers.NewsItemEntity", b =>
                 {
                     b.Property<long>("Id")

@@ -30,21 +30,6 @@ namespace AspNetCoreAngularSignalR.Controllers
             return Created("AddGroup", group);
         }
 
-        public bool GroupExists(string group)
-        {
-            return _newsStore.GroupExists(group);
-        }
-
-        public void CreateNewItem(NewsItem item)
-        {
-            if(_newsStore.GroupExists(item.NewsGroup))
-            {
-                _newsStore.CreateNewItem(item);
-            }
-
-            throw new System.Exception("group does not exist");
-        }
-
         public IEnumerable<NewsItem> GetAllNewItems(string group)
         {
             return _newsStore.GetAllNewsItems(group);
