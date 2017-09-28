@@ -11,6 +11,8 @@ export const RECEIVED_NEWS_ITEM = '[news] RECEIVED_NEWS_ITEM';
 export const RECEIVED_GROUP_JOINED = '[news] RECEIVED_GROUP_JOINED';
 export const RECEIVED_GROUP_LEFT = '[news] RECEIVED_GROUP_LEFT';
 
+export const RECEIVED_GROUP_HISTORY = '[news] RECEIVED_GROUP_HISTORY';
+
 export class JoinGroupAction implements Action {
     readonly type = JOIN_GROUP;
 
@@ -65,6 +67,12 @@ export class ReceivedGroupLeftAction implements Action {
     constructor(public group: string) { }
 }
 
+export class ReceivedGroupHistoryAction implements Action {
+    readonly type = RECEIVED_GROUP_HISTORY;
+
+    constructor(public newsItems: NewsItem[]) { }
+}
+
 export type Actions
     = JoinGroupAction
     | LeaveGroupAction
@@ -74,5 +82,6 @@ export type Actions
     | SendNewsItemActionComplete
     | ReceivedItemAction
     | ReceivedGroupJoinedAction
-    | ReceivedGroupLeftAction;
+    | ReceivedGroupLeftAction
+    | ReceivedGroupHistoryAction;
 

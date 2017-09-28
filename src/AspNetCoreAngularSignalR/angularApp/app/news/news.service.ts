@@ -44,6 +44,10 @@ export class NewsService {
             this.store.dispatch(new NewsActions.ReceivedGroupLeftAction(data));
         });
 
+        this._hubConnection.on('History', (newsItems: NewsItem[]) => {
+            this.store.dispatch(new NewsActions.ReceivedGroupHistoryAction(newsItems));
+        });
+
         this._hubConnection.start()
             .then(() => {
                 console.log('Hub connection started')

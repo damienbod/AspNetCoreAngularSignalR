@@ -23,6 +23,12 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
                 groups: state.groups
             });
 
+        case newsAction.RECEIVED_GROUP_HISTORY:
+            return Object.assign({}, state, {
+                newsItems: state.newsItems.concat(action.newsItems),
+                groups: state.groups
+            });
+
         case newsAction.RECEIVED_GROUP_LEFT:
             const data = [];
             for (const entry of state.groups) {

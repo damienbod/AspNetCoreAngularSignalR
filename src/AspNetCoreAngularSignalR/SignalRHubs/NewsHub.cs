@@ -39,6 +39,9 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
 
             await Groups.AddAsync(Context.ConnectionId, groupName);
             await Clients.Group(groupName).InvokeAsync("JoinGroup", groupName);
+
+            var history = _newsStore.GetAllNewsItems(groupName);
+            await Clients.Client(Context.ConnectionId).InvokeAsync("History", history);
         }
 
         public async Task LeaveGroup(string groupName)
