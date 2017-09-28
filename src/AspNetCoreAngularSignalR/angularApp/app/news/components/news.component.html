@@ -7,7 +7,7 @@
                 
                 <label for="group">Group: </label>
                 <select class="form-control" type="number" [(ngModel)]="group">
-                    <option *ngFor="let g of groups" [ngValue]="g">{{g}}</option>
+                    <option *ngFor="let g of (newsState$|async)?.groups" [ngValue]="g">{{g}}</option>
                 </select>
 
               

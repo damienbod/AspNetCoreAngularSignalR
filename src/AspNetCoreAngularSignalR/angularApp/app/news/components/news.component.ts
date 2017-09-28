@@ -45,5 +45,6 @@ export class NewsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.store.dispatch(new NewsActions.SelectAllGroupsAction());
     }
 }

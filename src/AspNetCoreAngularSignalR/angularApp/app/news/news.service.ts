@@ -1,5 +1,9 @@
+import 'rxjs/add/operator/map';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
 import { HubConnection } from '@aspnet/signalr-client';
 import { NewsItem } from './models/news-item';
 import { Store } from '@ngrx/store';
@@ -10,22 +14,35 @@ import * as NewsActions from './store/news.action';
 export class NewsService {
 
     private _hubConnection: HubConnection;
+    private actionUrl: string;
+    private headers: HttpHeaders;
 
-    constructor(private store: Store<any>) {
+    constructor(private http: HttpClient,
+        private store: Store<any>
+    ) {
         this.init();
+        this.actionUrl = 'http://localhost:5000/api/news/';
+
+        this.headers = new HttpHeaders();
+        this.headers = this.headers.set('Content-Type', 'application/json');
+        this.headers = this.headers.set('Accept', 'application/json');
     }
 
-    public send(newsItem: NewsItem): NewsItem {
+    send(newsItem: NewsItem): NewsItem {
         this._hubConnection.invoke('Send', newsItem);
         return newsItem;
     }
 
-    public joinGroup(group: string): void {
+    joinGroup(group: string): void {
         this._hubConnection.invoke('JoinGroup', group);
     }
 
-    public leaveGroup(group: string): void {
+    leaveGroup(group: string): void {
         this._hubConnection.invoke('LeaveGroup', group);
+    }
+
+    getAllGroups(): Observable<string[]> {
+        return this.http.get<string[]>(this.actionUrl, { headers: this.headers });
     }
 
     private init() {

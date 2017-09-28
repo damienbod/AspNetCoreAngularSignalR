@@ -32,6 +32,17 @@ export class NewsEffects {
             return Observable.of(new newsAction.LeaveGroupActionComplete(action.group));
         });
 
+    @Effect() getAllGroups$: Observable<Action> = this.actions$.ofType(newsAction.SELECTALL_GROUPS)
+        .switchMap(() =>
+            this.newsService.getAllGroups()
+                .map((data: string[]) => {
+                    return new newsAction.SelectAllGroupsActionComplete(data);
+                })
+                .catch((error: any) => {
+                    return of({ type: 'getAllGroups$' })
+                })
+        );
+
     constructor(
         private newsService: NewsService,
         private actions$: Actions
