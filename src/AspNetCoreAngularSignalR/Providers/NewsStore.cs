@@ -6,8 +6,14 @@ namespace AspNetCoreAngularSignalR.Providers
 {
     public class NewsStore
     {
+        public NewsStore(NewsContext newsContext)
+        {
+            _newsContext = newsContext;
+        }
+
         private List<string> _newsGroups = new List<string>();
         private List<NewsItem> _newsItems = new List<NewsItem>();
+        private readonly NewsContext _newsContext;
 
         public void AddGroup(string group)
         {
@@ -25,8 +31,10 @@ namespace AspNetCoreAngularSignalR.Providers
             {
                 _newsItems.Add(item);
             }
-
-            throw new System.Exception("group does not exist");
+            else
+            {
+                throw new System.Exception("group does not exist");
+            }
         }
 
         public IEnumerable<NewsItem> GetAllNewsItems(string group)

@@ -7,6 +7,7 @@ using AspNetCoreAngularSignalR.Providers;
 
 namespace AspNetCoreAngularSignalR.Controllers
 {
+    [Route("api/[controller]")]
     public class NewsController : Controller
     {
         private IHubContext<NewsHub> _newshubContext;
@@ -18,9 +19,11 @@ namespace AspNetCoreAngularSignalR.Controllers
             _newsStore = newsStore;
         }
 
-        public void AddGroup(string group)
+        [HttpPost]
+        public IActionResult AddGroup([FromBody] string group)
         {
             _newsStore.AddGroup(group);
+            return Created("AddGroup", group);
         }
 
         public bool GroupExists(string group)
