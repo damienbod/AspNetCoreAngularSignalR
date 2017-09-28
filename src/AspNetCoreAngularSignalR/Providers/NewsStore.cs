@@ -1,4 +1,5 @@
 ﻿using AspNetCoreAngularSignalR.SignalRHubs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,25 +12,32 @@ namespace AspNetCoreAngularSignalR.Providers
             _newsContext = newsContext;
         }
 
-        private List<string> _newsGroups = new List<string>();
-        private List<NewsItem> _newsItems = new List<NewsItem>();
         private readonly NewsContext _newsContext;
 
         public void AddGroup(string group)
         {
-            _newsGroups.Add(group);
+            _newsContext.NewsGroups.Add(new NewsGroup
+            {
+                Name = group
+            });
+            _newsContext.SaveChanges();
         }
 
         public bool GroupExists(string group)
         {
-            return _newsGroups.Contains(group);
+            var item = _newsContext.NewsGroups.FirstOrDefault(t => t.Name == group);
+            if(item == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public void CreateNewItem(NewsItem item)
         {
             if (GroupExists(item.NewsGroup))
             {
-                _newsItems.Add(item);
                 _newsContext.NewsItemEntities.Add(new NewsItemEntity
                 {
                     Header = item.Header,
@@ -47,12 +55,18 @@ namespace AspNetCoreAngularSignalR.Providers
 
         public IEnumerable<NewsItem> GetAllNewsItems(string group)
         {
-            return _newsItems.Where(item => item.NewsGroup == group);
+            return _newsContext.NewsItemEntities.Where(item => item.NewsGroup == group).Select(z => 
+                new NewsItem {
+                    Author = z.Author,
+                    Header = z.Header,
+                    NewsGroup = z.NewsGroup,
+                    NewsText = z.NewsText
+                });
         }
 
         public List<string> GetAllGroups()
         {
-            return _newsGroups;
+            return _newsContext.NewsGroups.Select(t =>  t.Name ).ToList();
         }
     }
 }
