@@ -29,7 +29,7 @@ namespace AspNetCoreAngularSignalR.Providers
             throw new System.Exception("group does not exist");
         }
 
-        public IEnumerable<NewsItem> GetAllNewItems(string group)
+        public IEnumerable<NewsItem> GetAllNewsItems(string group)
         {
             return _newsItems.Where(item => item.NewsGroup == group);
         }

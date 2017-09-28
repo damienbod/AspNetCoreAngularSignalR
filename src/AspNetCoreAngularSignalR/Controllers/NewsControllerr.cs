@@ -40,7 +40,7 @@ namespace AspNetCoreAngularSignalR.Controllers
 
         public IEnumerable<NewsItem> GetAllNewItems(string group)
         {
-            return _newsStore.GetAllNewItems(group);
+            return _newsStore.GetAllNewsItems(group);
         }
 
         public List<string> GetAllGroups()
