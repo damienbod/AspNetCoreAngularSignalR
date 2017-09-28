@@ -1,7 +1,7 @@
 ﻿<div class="container-fluid">
 
     <div class="row">
-        
+
         <div class="form-inline" >
             <div class="form-group">
                 
@@ -14,24 +14,35 @@
                 <label for="author">Author: </label>
                 <input type="text" class="form-control" id="author" placeholder="your name" name="author" [(ngModel)]="author" required>
             </div>
-            <button class="btn btn-primary" (click)="join()">Join</button>
-            <button class="btn btn-primary" (click)="leave()">Leave</button>
+            <button class="btn btn-primary" style="width:150px;" (click)="join()">Join</button>
+            <button class="btn btn-primary" style="width:150px;"  (click)="leave()">Leave</button>
         </div>
     </div>
 
     <hr />
 
     <div class="row">
-        <form class="form" (ngSubmit)="sendNewsItem()" #newsItemForm="ngForm">
+
+        <form class="form-horizontal" style="padding: 10px 0;" (ngSubmit)="sendNewsItem()" #newsItemForm="ngForm">
             <div class="form-group">
-                <label for="header">Header</label>
-                <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="newsItem.Header" required>
+                <label for="header" class="col-sm-2 control-label">Header</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="newsItem.Header" required>
+                </div>
             </div>
             <div class="form-group">
-                <label for="newsText">Text</label>
-                <input type="text" class="form-control" id="newsText" placeholder="your newsText..." name="newsText" [(ngModel)]="newsItem.NewsText" required>
+                <label for="newsText" class="col-sm-2 control-label">Text</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="newsText" placeholder="your newsText..." name="newsText" [(ngModel)]="newsItem.NewsText" required>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!newsItemForm.valid">Send News to: {{group}}</button>
+            <div class="form-group">
+                <label for="newsText" class="col-sm-2 control-label"></label>
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary col-sm-12" [disabled]="!newsItemForm.valid">Send News to: {{group}}</button>
+                </div>
+            </div>
+            
         </form>
     </div>
 
