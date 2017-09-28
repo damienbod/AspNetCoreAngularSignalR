@@ -14,7 +14,7 @@ export class NewsComponent implements OnInit {
     public async: any;
     newsItem: NewsItem;
     newsItems: NewsItem[];
-    group = 'are';
+    group = 'IT';
     author = 'unknown';
     newsState$: Observable<NewsState>;
     groups = ['IT', 'global', 'sport'];
