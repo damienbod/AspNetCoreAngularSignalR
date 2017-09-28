@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AspNetCoreAngularSignalR.SignalRHubs;
 using AspNetCoreAngularSignalR.Controllers;
+using AspNetCoreAngularSignalR.Providers;
 
 namespace Angular2WebpackVisualStudio
 {
@@ -40,7 +41,7 @@ namespace Angular2WebpackVisualStudio
                     });
             });
 
-            services.AddSingleton<NewsProvider>();
+            services.AddSingleton<NewsStore>();
             services.AddSignalR();
             services.AddMvc();
         }

@@ -1,11 +1,10 @@
 ﻿using AspNetCoreAngularSignalR.SignalRHubs;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreAngularSignalR.Controllers
+namespace AspNetCoreAngularSignalR.Providers
 {
-    public class NewsProvider : Controller
+    public class NewsStore
     {
         private List<string> _newsGroups = new List<string>();
         private List<NewsItem> _newsItems = new List<NewsItem>();
@@ -22,7 +21,7 @@ namespace AspNetCoreAngularSignalR.Controllers
 
         public void CreateNewItem(NewsItem item)
         {
-            if(GroupExists(item.NewsGroup))
+            if (GroupExists(item.NewsGroup))
             {
                 _newsItems.Add(item);
             }
@@ -35,7 +34,7 @@ namespace AspNetCoreAngularSignalR.Controllers
             return _newsItems.Where(item => item.NewsGroup == group);
         }
 
-        public List<string> GetAllGroup()
+        public List<string> GetAllGroups()
         {
             return _newsGroups;
         }
