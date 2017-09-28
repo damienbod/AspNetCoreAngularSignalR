@@ -25,7 +25,7 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
 
         case newsAction.RECEIVED_GROUP_HISTORY:
             return Object.assign({}, state, {
-                newsItems: state.newsItems.concat(action.newsItems),
+                newsItems: action.newsItems,
                 groups: state.groups
             });
 
