@@ -30,11 +30,6 @@ namespace AspNetCoreAngularSignalR.Controllers
             return Created("AddGroup", group);
         }
 
-        public IEnumerable<NewsItem> GetAllNewItems(string group)
-        {
-            return _newsStore.GetAllNewsItems(group);
-        }
-
         public List<string> GetAllGroups()
         {
             return _newsStore.GetAllGroups();
