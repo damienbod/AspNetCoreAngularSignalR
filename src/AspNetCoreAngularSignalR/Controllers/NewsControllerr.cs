@@ -10,12 +10,10 @@ namespace AspNetCoreAngularSignalR.Controllers
     [Route("api/[controller]")]
     public class NewsController : Controller
     {
-        private IHubContext<NewsHub> _newshubContext;
         private NewsStore _newsStore;
 
-        public NewsController(IHubContext<NewsHub> newshubContext, NewsStore newsStore)
+        public NewsController(NewsStore newsStore)
         {
-            _newshubContext = newshubContext;
             _newsStore = newsStore;
         }
 
