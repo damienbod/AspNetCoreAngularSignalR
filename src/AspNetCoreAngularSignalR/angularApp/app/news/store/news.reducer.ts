@@ -5,7 +5,7 @@ import * as newsAction from './news.action';
 
 export const initialState: NewsState = {
     newsItems: [],
-    groups: ['group']
+    groups: ['IT', 'global', 'sport']
 };
 
 export function newsReducer(state = initialState, action: newsAction.Actions): NewsState {
@@ -23,6 +23,12 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
                 groups: state.groups
             });
 
+        case newsAction.RECEIVED_GROUP_HISTORY:
+            return Object.assign({}, state, {
+                newsItems: action.newsItems,
+                groups: state.groups
+            });
+
         case newsAction.RECEIVED_GROUP_LEFT:
             const data = [];
             for (const entry of state.groups) {
@@ -35,6 +41,13 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
                 newsItems: state.newsItems,
                 groups: data
             });
+
+        case newsAction.SELECTALL_GROUPS_COMPLETE:
+            return Object.assign({}, state, {
+                newsItems: state.newsItems,
+                groups: action.groups
+            });
+
         default:
             return state;
 

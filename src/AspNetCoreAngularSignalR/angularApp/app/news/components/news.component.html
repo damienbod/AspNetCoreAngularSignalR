@@ -1,33 +1,48 @@
 ﻿<div class="container-fluid">
 
-    <h1>Send some basic news messages</h1>
+    <div class="row">
+
+        <div class="form-inline" >
+            <div class="form-group">
+                
+                <label for="group">Group: </label>
+                <select class="form-control" type="number" [(ngModel)]="group">
+                    <option *ngFor="let g of (newsState$|async)?.groups" [ngValue]="g">{{g}}</option>
+                </select>
+
+              
+                <label for="author">Author: </label>
+                <input type="text" class="form-control" id="author" placeholder="your name" name="author" [(ngModel)]="author" required>
+            </div>
+            <button class="btn btn-primary" style="width:150px;" (click)="join()">Join</button>
+            <button class="btn btn-primary" style="width:150px;" (click)="leave()">Leave</button>
+        </div>
+    </div>
+
+    <hr />
 
     <div class="row">
-        <form class="form-inline" >
+
+        <form class="form-horizontal" style="padding: 10px 0;" (ngSubmit)="sendNewsItem()" #newsItemForm="ngForm">
             <div class="form-group">
-                <label for="header">Group</label>
-                <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="group" required>
-            </div>
-            <button class="btn btn-primary" (click)="join()">Join</button>
-            <button class="btn btn-primary" (click)="leave()">Leave</button>
-        </form>
-    </div>
-    <hr />
-    <div class="row">
-        <form class="form" (ngSubmit)="sendNewsItem()" #newsItemForm="ngForm">
-            <div class="form-group">
-                <label for="header">Header</label>
-                <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="newsItem.Header" required>
+                <label for="header" class="col-sm-2 control-label">Header</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="newsItem.Header" required>
+                </div>
             </div>
             <div class="form-group">
-                <label for="newsText">Text</label>
-                <input type="text" class="form-control" id="newsText" placeholder="your newsText..." name="newsText" [(ngModel)]="newsItem.NewsText" required>
+                <label for="newsText" class="col-sm-2 control-label">Text</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="newsText" placeholder="your newsText..." name="newsText" [(ngModel)]="newsItem.NewsText" required>
+                </div>
             </div>
             <div class="form-group">
-                <label for="newsText">Author</label>
-                <input type="text" class="form-control" id="author" placeholder="your newsText..." name="author" [(ngModel)]="newsItem.Author" required>
+                <label for="newsText" class="col-sm-2 control-label"></label>
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary col-sm-12" [disabled]="!newsItemForm.valid">Send News to: {{group}}</button>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!newsItemForm.valid">Send News to: {{group}}</button>
+            
         </form>
     </div>
 
@@ -40,7 +55,7 @@
                         <th>header</th>
                         <th>Text</th>
                         <th>Author</th>
-                        <th>roup</th>
+                        <th>Group</th>
                     </tr>
                 </thead>
                 <tbody>

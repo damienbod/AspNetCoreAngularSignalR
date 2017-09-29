@@ -7,7 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AspNetCoreAngularSignalR.SignalRHubs;
-using AspNetCoreAngularSignalR.Controllers;
+using AspNetCoreAngularSignalR.Providers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Angular2WebpackVisualStudio
 {
@@ -28,6 +29,14 @@ namespace Angular2WebpackVisualStudio
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var sqlConnectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddDbContext<NewsContext>(options =>
+                options.UseSqlite(
+                    sqlConnectionString
+                ), ServiceLifetime.Singleton
+            );
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins",
@@ -40,7 +49,7 @@ namespace Angular2WebpackVisualStudio
                     });
             });
 
-            services.AddSingleton<NewsProvider>();
+            services.AddSingleton<NewsStore>();
             services.AddSignalR();
             services.AddMvc();
         }
