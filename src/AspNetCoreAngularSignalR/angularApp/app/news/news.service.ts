@@ -54,6 +54,8 @@ export class NewsService {
         });
 
         this._hubConnection.on('JoinGroup', (data: string) => {
+            console.log('recieved data from the hub');
+            console.log(data);
             this.store.dispatch(new NewsActions.ReceivedGroupJoinedAction(data));
         });
 
@@ -62,6 +64,8 @@ export class NewsService {
         });
 
         this._hubConnection.on('History', (newsItems: NewsItem[]) => {
+            console.log('recieved history from the hub');
+            console.log(newsItems);
             this.store.dispatch(new NewsActions.ReceivedGroupHistoryAction(newsItems));
         });
 
