@@ -13,6 +13,10 @@
 
 </ul>
 
+## History
+
+2017-10-15: Updated signalr 1.0.0-alpha2-final
+
 ## SignalR
 
 https://github.com/aspnet/SignalR#readme
