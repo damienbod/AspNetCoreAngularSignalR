@@ -101,10 +101,7 @@ module.exports = {
         ),
         new webpack.NoEmitOnErrorsPlugin(),
         new UglifyJSPlugin({
-            parallel: {
-                cache: true,
-                workers: 2
-            }
+            parallel: 2
         }),
         new webpack.optimize.CommonsChunkPlugin(
             {
