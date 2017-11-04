@@ -15,21 +15,21 @@ export class NewsEffects {
 
     @Effect() sendNewItem$: Observable<Action> = this.actions$.ofType(newsAction.SEND_NEWS_ITEM)
         .switchMap((action: any) => {
-            let typedAction: newsAction.SendNewsItemAction = action as newsAction.SendNewsItemAction;
+            const typedAction: newsAction.SendNewsItemAction = action as newsAction.SendNewsItemAction;
             this.newsService.send(typedAction.newsItem);
             return Observable.of(new newsAction.SendNewsItemActionComplete(typedAction.newsItem));
         });
 
     @Effect() joinGroup$: Observable<Action> = this.actions$.ofType(newsAction.JOIN_GROUP)
         .switchMap((action: any) => {
-            let typedAction: newsAction.JoinGroupAction = action as newsAction.JoinGroupAction;
+            const typedAction: newsAction.JoinGroupAction = action as newsAction.JoinGroupAction;
             this.newsService.joinGroup(typedAction.group);
             return Observable.of(new newsAction.JoinGroupActionComplete(typedAction.group));
         });
 
     @Effect() leaveGroup$: Observable<Action> = this.actions$.ofType(newsAction.LEAVE_GROUP)
         .switchMap((action: any) => {
-            let typedAction: newsAction.LeaveGroupAction = action as newsAction.LeaveGroupAction;
+            const typedAction: newsAction.LeaveGroupAction = action as newsAction.LeaveGroupAction;
             this.newsService.leaveGroup(typedAction.group);
             return Observable.of(new newsAction.LeaveGroupActionComplete(typedAction.group));
         });
