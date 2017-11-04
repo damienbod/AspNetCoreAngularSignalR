@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { HubConnection } from '@aspnet/signalr-client';
 
 @Component({
@@ -35,7 +34,7 @@ export class HomeComponent implements OnInit {
             .then(() => {
                 console.log('Hub connection started')
             })
-            .catch(err => {
+            .catch(() => {
                 console.log('Error while establishing connection')
             });
     }
