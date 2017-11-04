@@ -3,7 +3,7 @@
 @Component({
     selector: 'app-component',
     templateUrl: './app.component.html',
-    // styleUrls: ['./app.component.scss'],
+    styleUrls: ['./app.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 
