@@ -1,5 +1,3 @@
-import 'rxjs/add/operator/map';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -46,7 +44,7 @@ export class NewsService {
 
     private init() {
 
-        this._hubConnection = new HubConnection('/looney');
+        this._hubConnection = new HubConnection('http://localhost:5000/looney');
 
         this._hubConnection.on('Send', (newsItem: NewsItem) => {
             this.store.dispatch(new NewsActions.ReceivedItemAction(newsItem));
