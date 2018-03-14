@@ -23,9 +23,9 @@
     "lint": "tslint ./angularApp"
   },
   "dependencies": {
-    "@ngrx/effects": "^4.1.1",
-    "@ngrx/store": "^4.1.1",
-    "@ngrx/store-devtools": "4.1.1",
+    "@ngrx/effects": "^5.2.0",
+    "@ngrx/store": "^5.2.0",
+    "@ngrx/store-devtools": "5.2.0",
     "@angular/animations": "5.2.8",
     "@angular/common": "5.2.8",
     "@angular/compiler": "5.2.8",
