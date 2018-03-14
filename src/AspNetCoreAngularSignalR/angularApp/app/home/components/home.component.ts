@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._hubConnection = new HubConnection('http://localhost:5000/loopy');
+        this._hubConnection = new HubConnection('https://localhost:44324/loopy');
 
         this._hubConnection.on('Send', (data: any) => {
             const received = `Received: ${data}`;

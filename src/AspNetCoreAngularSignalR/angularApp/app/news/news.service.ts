@@ -18,7 +18,7 @@ export class NewsService {
         private store: Store<any>
     ) {
         this.init();
-        this.actionUrl = 'http://localhost:5000/api/news/';
+        this.actionUrl = 'https://localhost:44324/api/news/';
 
         this.headers = new HttpHeaders();
         this.headers = this.headers.set('Content-Type', 'application/json');
@@ -44,7 +44,7 @@ export class NewsService {
 
     private init() {
 
-        this._hubConnection = new HubConnection('http://localhost:5000/looney');
+        this._hubConnection = new HubConnection('https://localhost:44324/looney');
 
         this._hubConnection.on('Send', (newsItem: NewsItem) => {
             this.store.dispatch(new NewsActions.ReceivedItemAction(newsItem));
