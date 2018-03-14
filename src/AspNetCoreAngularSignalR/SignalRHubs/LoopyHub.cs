@@ -7,7 +7,7 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
     {
         public Task Send(string data)
         {
-            return Clients.All.InvokeAsync("Send", data);
+            return Clients.All.SendAsync("Send", data);
         }
     }
 }
