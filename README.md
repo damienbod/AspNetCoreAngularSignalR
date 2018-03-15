@@ -25,7 +25,7 @@ https://github.com/aspnet/SignalR#readme
 
 ## npm feed
 
-https://www.npmjs.com/package/@aspnet/signalr-client
+https://www.npmjs.com/package/@aspnet/signalr
 https://www.npmjs.com/package/msgpack5
 
 ## MyGet feeds required for project if using the latest dev
