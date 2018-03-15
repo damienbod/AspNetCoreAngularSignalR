@@ -37,8 +37,8 @@ https://dotnet.myget.org/feed/aspnetcore-ci-dev/package/npm/@aspnet/signalr-clie
 
 ## npm packages
 
-    "msgpack5": "^3.5.1",
-    "@aspnet/signalr-client": "1.0.0-alpha1-final"
+"@aspnet/signalr": "^1.0.0-preview1-update1",
+"msgpack5": "4.0.2",
 
 
 # Production Build
