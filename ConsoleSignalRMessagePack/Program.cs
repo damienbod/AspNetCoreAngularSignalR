@@ -19,27 +19,30 @@ namespace ConsoleSignalRMessagePack
                 Console.WriteLine($"Received Message: {message.Name}");
             });
             Console.WriteLine("Connected to Hub");
-            Console.ReadLine();
-            await _hubConnection.SendAsync("Send", new MessageDto() { Id = Guid.NewGuid(), Name = "Hi from Console client", Amount = 7 });
-            Console.WriteLine("SendAsync to Hub");
-            Console.ReadLine();
-            await DisposeAsync();
+            Console.WriteLine("Press ESC to stop");
+            do
+            {
+                while (!Console.KeyAvailable)
+                {
+                    var message = Console.ReadLine();
+                    await _hubConnection.SendAsync("Send", new MessageDto() { Id = Guid.NewGuid(), Name = message, Amount = 7 });
+                    Console.WriteLine("SendAsync to Hub");
+                }
+            }
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
+            await _hubConnection.DisposeAsync();
         }
 
         public static async Task SetupSignalRHubAsync()
         {
             _hubConnection = new HubConnectionBuilder()
                  .WithUrl("https://localhost:44324/loopymessage")
-                 .WithConsoleLogger()
                  .WithMessagePackProtocol()
+                 .WithConsoleLogger()
                  .Build();
 
             await _hubConnection.StartAsync();
-        }
-
-        public static async Task DisposeAsync()
-        {
-            await _hubConnection.DisposeAsync();
         }
     }
 }
