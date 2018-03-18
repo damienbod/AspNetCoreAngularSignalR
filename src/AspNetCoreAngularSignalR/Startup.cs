@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using AspNetCoreAngularSignalR.SignalRHubs;
 using AspNetCoreAngularSignalR.Providers;
 using Microsoft.EntityFrameworkCore;
+using MsgPack.Serialization;
 
 namespace Angular2WebpackVisualStudio
 {
@@ -50,7 +51,15 @@ namespace Angular2WebpackVisualStudio
             });
 
             services.AddSingleton<NewsStore>();
-            services.AddSignalR();
+            services.AddSignalR(options =>
+            {
+                // Faster pings for testing
+                options.KeepAliveInterval = TimeSpan.FromSeconds(5);
+            })
+            .AddMessagePackProtocol(options =>
+            {
+                options.SerializationContext.DictionarySerlaizationOptions.KeyTransformer = DictionaryKeyTransformers.LowerCamel;
+            });
             services.AddMvc();
         }
 
@@ -85,6 +94,7 @@ namespace Angular2WebpackVisualStudio
             {
                 routes.MapHub<LoopyHub>("/loopy");
                 routes.MapHub<NewsHub>("/looney");
+                routes.MapHub<LoopyMessageHub>("/loopymessage");
             });
 
             app.UseMvc(routes =>
