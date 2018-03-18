@@ -56,10 +56,7 @@ namespace Angular2WebpackVisualStudio
                 // Faster pings for testing
                 options.KeepAliveInterval = TimeSpan.FromSeconds(5);
             })
-            .AddMessagePackProtocol(options =>
-            {
-                options.SerializationContext.DictionarySerlaizationOptions.KeyTransformer = DictionaryKeyTransformers.LowerCamel;
-            });
+            .AddMessagePackProtocol();
             services.AddMvc();
         }
 

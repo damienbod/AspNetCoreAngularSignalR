@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.MsgPack" Version="1.0.0-preview1-final" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dtos\Dtos.csproj" />
+  </ItemGroup>
+
 </Project>
