@@ -53,7 +53,6 @@ namespace Angular2WebpackVisualStudio
             services.AddSingleton<NewsStore>();
             services.AddSignalR(options =>
             {
-                // Faster pings for testing
                 options.KeepAliveInterval = TimeSpan.FromSeconds(5);
             })
             .AddMessagePackProtocol();
