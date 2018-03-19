@@ -17,6 +17,8 @@
 
 ## History
 
+2018-03-19: Added example for Message Pack
+
 2018-03-14: Updated signalr Microsoft.AspNetCore.SignalR 1.0.0-preview1-final, Angular 5.2.8, @aspnet/signalr 1.0.0-preview1-update1
 
 2017-10-15: Updated signalr 1.0.0-alpha2-final
