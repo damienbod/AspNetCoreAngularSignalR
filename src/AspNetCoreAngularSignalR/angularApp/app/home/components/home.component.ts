@@ -7,7 +7,7 @@ import { HubConnection } from '@aspnet/signalr';
 })
 
 export class HomeComponent implements OnInit {
-    private _hubConnection: HubConnection;
+    private _hubConnection: HubConnection | undefined;
     public async: any;
     message = '';
     messages: string[] = [];
@@ -18,7 +18,9 @@ export class HomeComponent implements OnInit {
     public sendMessage(): void {
         const data = `Sent: ${this.message}`;
 
-        this._hubConnection.invoke('Send', data);
+        if (this._hubConnection) {
+            this._hubConnection.invoke('Send', data);
+        }
         this.messages.push(data);
     }
 

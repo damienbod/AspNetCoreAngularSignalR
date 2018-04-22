@@ -10,7 +10,7 @@ import * as NewsActions from './store/news.action';
 @Injectable()
 export class NewsService {
 
-    private _hubConnection: HubConnection;
+    private _hubConnection: HubConnection | undefined;
     private actionUrl: string;
     private headers: HttpHeaders;
 
@@ -26,16 +26,22 @@ export class NewsService {
     }
 
     send(newsItem: NewsItem): NewsItem {
-        this._hubConnection.invoke('Send', newsItem);
+        if (this._hubConnection) {
+            this._hubConnection.invoke('Send', newsItem);
+        }
         return newsItem;
     }
 
     joinGroup(group: string): void {
-        this._hubConnection.invoke('JoinGroup', group);
+        if (this._hubConnection) {
+            this._hubConnection.invoke('JoinGroup', group);
+        }
     }
 
     leaveGroup(group: string): void {
-        this._hubConnection.invoke('LeaveGroup', group);
+        if (this._hubConnection) {
+            this._hubConnection.invoke('LeaveGroup', group);
+        }
     }
 
     getAllGroups(): Observable<string[]> {

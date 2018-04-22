@@ -13,7 +13,7 @@ import { NewsItem } from '../models/news-item';
 export class NewsComponent implements OnInit {
     public async: any;
     newsItem: NewsItem;
-    newsItems: NewsItem[];
+    newsItems: NewsItem[] = [];
     group = 'IT';
     author = 'unknown';
     newsState$: Observable<NewsState>;
