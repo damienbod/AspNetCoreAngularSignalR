@@ -13,20 +13,26 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
 
         case newsAction.RECEIVED_GROUP_JOINED:
             return Object.assign({}, state, {
-                newsItems: state.news.newsItems,
-                groups: (state.news.groups.indexOf(action.group) > -1) ? state.news.groups : state.news.groups.concat(action.group)
+                news: {
+                    newsItems: state.news.newsItems,
+                    groups: (state.news.groups.indexOf(action.group) > -1) ? state.news.groups : state.news.groups.concat(action.group)
+                }
             });
 
         case newsAction.RECEIVED_NEWS_ITEM:
             return Object.assign({}, state, {
-                newsItems: state.news.newsItems.concat(action.newsItem),
-                groups: state.news.groups
+                news: {
+                    newsItems: state.news.newsItems.concat(action.newsItem),
+                    groups: state.news.groups
+                }
             });
 
         case newsAction.RECEIVED_GROUP_HISTORY:
             return Object.assign({}, state, {
-                newsItems: action.newsItems,
-                groups: state.news.groups
+                news: {
+                    newsItems: action.newsItems,
+                    groups: state.news.groups
+                }
             });
 
         case newsAction.RECEIVED_GROUP_LEFT:
@@ -38,14 +44,18 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
             }
             console.log(data);
             return Object.assign({}, state, {
-                newsItems: state.news.newsItems,
-                groups: data
+                news: {
+                    newsItems: state.news.newsItems,
+                    groups: data
+                }
             });
 
         case newsAction.SELECTALL_GROUPS_COMPLETE:
             return Object.assign({}, state, {
-                newsItems: state.news.newsItems,
-                groups: action.groups
+                news: {
+                    newsItems: state.news.newsItems,
+                    groups: action.groups
+                }
             });
 
         default:

@@ -20,10 +20,11 @@ export class NewsComponent implements OnInit {
     groups = ['IT', 'global', 'sport'];
 
     constructor(private store: Store<any>) {
-        this.newsState$ = this.store.select<NewsState>(state => state.news.newsitems);
 
-        this.store.select<NewsState>(state => state.news.newsitems).subscribe((o: NewsState) => {
-            this.newsItems = o.newsItems;
+        this.newsState$ = this.store.select<NewsState>(state => state.news);
+
+        this.store.select<NewsState>(state => state.news).subscribe((o: NewsState) => {
+            this.newsItems = o.news.newsItems;
         });
 
         this.newsItem = new NewsItem();
@@ -45,6 +46,7 @@ export class NewsComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('go');
         this.store.dispatch(new NewsActions.SelectAllGroupsAction());
     }
 }
