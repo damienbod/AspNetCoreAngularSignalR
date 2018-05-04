@@ -18,6 +18,8 @@
 
 ## History
 
+2018-05-04: Updated to Angular 6
+
 2018-04-22: Updating nuget packages and npm packages, @aspnet/signalr 1.0.0-preview2-final, Microsoft.AspNetCore.SignalR 1.0.0-preview2-final
 
 2018-03-19: Added example for Message Pack
