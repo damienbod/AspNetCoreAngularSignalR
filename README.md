@@ -18,6 +18,8 @@
 
 ## History
 
+2018-05-04: Updating nuget Angular 6
+
 2018-04-22: Updating nuget packages and npm packages
 
 2018-03-19: Added example for Message Pack
