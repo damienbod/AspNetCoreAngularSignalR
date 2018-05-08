@@ -39,7 +39,7 @@ namespace ConsoleSignalRMessagePack
             _hubConnection = new HubConnectionBuilder()
                  .WithUrl("https://localhost:44324/loopymessage")
                  .WithMessagePackProtocol()
-                 .WithConsoleLogger()
+                 //.WithConsoleLogger()
                  .Build();
 
             await _hubConnection.StartAsync();

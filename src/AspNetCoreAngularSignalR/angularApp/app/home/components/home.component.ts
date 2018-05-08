@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HubConnection } from '@aspnet/signalr';
+import * as signalR from '@aspnet/signalr';
 
 @Component({
     selector: 'app-home-component',
@@ -25,7 +26,12 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._hubConnection = new HubConnection('https://localhost:44324/loopy');
+        this._hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl('https://localhost:44324/loopy')
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+
+        this._hubConnection.start().catch(err => console.error(err.toString()));
 
         this._hubConnection.on('Send', (data: any) => {
             const received = `Received: ${data}`;

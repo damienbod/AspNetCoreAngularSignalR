@@ -6,6 +6,7 @@ import { HubConnection } from '@aspnet/signalr';
 import { NewsItem } from './models/news-item';
 import { Store } from '@ngrx/store';
 import * as NewsActions from './store/news.action';
+import * as signalR from '@aspnet/signalr';
 
 @Injectable()
 export class NewsService {
@@ -50,7 +51,12 @@ export class NewsService {
 
     private init() {
 
-        this._hubConnection = new HubConnection('https://localhost:44324/looney');
+        this._hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl('https://localhost:44324/looney')
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+
+        this._hubConnection.start().catch(err => console.error(err.toString()));
 
         this._hubConnection.on('Send', (newsItem: NewsItem) => {
             this.store.dispatch(new NewsActions.ReceivedItemAction(newsItem));

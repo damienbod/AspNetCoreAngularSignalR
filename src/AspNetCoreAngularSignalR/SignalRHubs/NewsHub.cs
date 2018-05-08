@@ -31,7 +31,7 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
                 throw new System.Exception("cannot join a group which does not exist.");
             }
 
-            await Groups.AddAsync(Context.ConnectionId, groupName);
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
             await Clients.Group(groupName).SendAsync("JoinGroup", groupName);
 
             var history = _newsStore.GetAllNewsItems(groupName);
@@ -46,7 +46,7 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
             }
 
             await Clients.Group(groupName).SendAsync("LeaveGroup", groupName);
-            await Groups.RemoveAsync(Context.ConnectionId, groupName);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
         }
     }
 }

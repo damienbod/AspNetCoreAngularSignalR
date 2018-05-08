@@ -18,6 +18,8 @@
 
 ## History
 
+2018-05-08: Updated to .NET Core 2.1 rc1
+
 2018-05-04: Updated to Angular 6
 
 2018-04-22: Updating nuget packages and npm packages, @aspnet/signalr 1.0.0-preview2-final, Microsoft.AspNetCore.SignalR 1.0.0-preview2-final
