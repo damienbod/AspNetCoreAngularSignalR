@@ -1,7 +1,8 @@
 ﻿using Dtos;
-using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 
 namespace ConsoleSignalRMessagePack
 {
@@ -38,11 +39,15 @@ namespace ConsoleSignalRMessagePack
         {
             _hubConnection = new HubConnectionBuilder()
                  .WithUrl("https://localhost:44324/loopymessage")
-                 .WithMessagePackProtocol()
-                 //.WithConsoleLogger()
+                 //.WithMessagePackProtocol()
+                 .ConfigureLogging(factory =>
+                 {
+                     factory.AddConsole();
+                     factory.AddFilter("Console", level => level >= LogLevel.Trace);
+                 })
                  .Build();
 
-            await _hubConnection.StartAsync();
+             await _hubConnection.StartAsync();
         }
     }
 }

@@ -6,11 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.SignalR;
 using AspNetCoreAngularSignalR.SignalRHubs;
 using AspNetCoreAngularSignalR.Providers;
 using Microsoft.EntityFrameworkCore;
-using MsgPack.Serialization;
 
 namespace Angular2WebpackVisualStudio
 {
@@ -53,14 +51,9 @@ namespace Angular2WebpackVisualStudio
 
             services.AddSingleton<NewsStore>();
 
-            services.AddSignalR();
-              //  .AddMessagePackProtocol();
+            services.AddSignalR()
+              .AddMessagePackProtocol();
 
-            //services.AddSignalR(options =>
-            //{
-            //    options.KeepAliveInterval = TimeSpan.FromSeconds(5);
-            //})
-            //.AddMessagePackProtocol();
             services.AddMvc();
         }
 
