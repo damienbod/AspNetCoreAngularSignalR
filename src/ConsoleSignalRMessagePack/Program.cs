@@ -3,6 +3,9 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.SignalR.Protocol;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace ConsoleSignalRMessagePack
 {
@@ -37,16 +40,17 @@ namespace ConsoleSignalRMessagePack
 
         public static async Task SetupSignalRHubAsync()
         {
-            _hubConnection = new HubConnectionBuilder()
+            IHubProtocol protocol = new MessagePackHubProtocol();
+            var hubConnectionBuilder = new HubConnectionBuilder()
                  .WithUrl("https://localhost:44324/loopymessage")
-                 //.WithMessagePackProtocol()
                  .ConfigureLogging(factory =>
                  {
                      factory.AddConsole();
                      factory.AddFilter("Console", level => level >= LogLevel.Trace);
-                 })
-                 .Build();
+                 }) ;
+            hubConnectionBuilder.Services.TryAddEnumerable(ServiceDescriptor.Singleton(typeof(IHubProtocol), protocol));
 
+            _hubConnection = hubConnectionBuilder.Build();
              await _hubConnection.StartAsync();
         }
     }
