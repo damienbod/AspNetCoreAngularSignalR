@@ -40,17 +40,15 @@ namespace ConsoleSignalRMessagePack
 
         public static async Task SetupSignalRHubAsync()
         {
-            IHubProtocol protocol = new MessagePackHubProtocol();
-            var hubConnectionBuilder = new HubConnectionBuilder()
+            _hubConnection = new HubConnectionBuilder()
                  .WithUrl("https://localhost:44324/loopymessage")
+                 .AddMessagePackProtocol()
                  .ConfigureLogging(factory =>
                  {
                      factory.AddConsole();
                      factory.AddFilter("Console", level => level >= LogLevel.Trace);
-                 }) ;
-            hubConnectionBuilder.Services.TryAddEnumerable(ServiceDescriptor.Singleton(typeof(IHubProtocol), protocol));
+                 }).Build();
 
-            _hubConnection = hubConnectionBuilder.Build();
              await _hubConnection.StartAsync();
         }
     }
