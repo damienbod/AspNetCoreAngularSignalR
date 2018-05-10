@@ -45,7 +45,7 @@ namespace AspNetCoreAngularSignalR.Controllers
                             var imageMessage = new ImageMessage
                             {
                                 ImageHeaders = "data:" + file.ContentType + ";base64,",
-                                ImageBinary = memoryStream.ToArray()
+                                ImageBinary = Convert.ToBase64String(memoryStream.ToArray())
                             };
 
                             //return File(memoryStream.ToArray(), file.ContentType);

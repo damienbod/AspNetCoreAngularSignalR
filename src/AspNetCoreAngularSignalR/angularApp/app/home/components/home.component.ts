@@ -37,14 +37,6 @@ export class HomeComponent implements OnInit {
             const received = `Received: ${data}`;
             this.messages.push(received);
         });
-
-        //this._hubConnection.start()
-        //    .then(() => {
-        //        console.log('Hub connection started')
-        //    })
-        //    .catch(() => {
-        //        console.log('Error while establishing connection')
-        //    });
     }
 
 }

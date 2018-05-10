@@ -39,7 +39,7 @@ export class ImagesComponent implements OnInit {
 
         this._hubConnection.start().catch(err => {
             console.error(err.toString())
-        });  
+        });
 
         this._hubConnection.on('SendFileNameUpload', (data: any) => {
             const received = `Received: ${data}`;
@@ -47,6 +47,7 @@ export class ImagesComponent implements OnInit {
         });
 
         this._hubConnection.on('ImageMessage', (data: any) => {
+            console.log(data);
             this.images.push(data);
         });
 
