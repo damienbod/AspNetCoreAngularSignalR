@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this._hubConnection = new signalR.HubConnectionBuilder()
             .withUrl('https://localhost:44324/loopy')
-            .configureLogging(signalR.LogLevel.Information)
+            .configureLogging(signalR.LogLevel.Trace)
             .build();
 
         this._hubConnection.start().catch(err => console.error(err.toString()));
@@ -38,13 +38,13 @@ export class HomeComponent implements OnInit {
             this.messages.push(received);
         });
 
-        this._hubConnection.start()
-            .then(() => {
-                console.log('Hub connection started')
-            })
-            .catch(() => {
-                console.log('Error while establishing connection')
-            });
+        //this._hubConnection.start()
+        //    .then(() => {
+        //        console.log('Hub connection started')
+        //    })
+        //    .catch(() => {
+        //        console.log('Error while establishing connection')
+        //    });
     }
 
 }

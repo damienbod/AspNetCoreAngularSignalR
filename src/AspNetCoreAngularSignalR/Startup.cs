@@ -66,7 +66,8 @@ namespace Angular2WebpackVisualStudio
 
             var angularRoutes = new[] {
                  "/home",
-                 "/news"
+                 "/news",
+                 "/images"
              };
 
             app.UseHsts();
@@ -92,13 +93,14 @@ namespace Angular2WebpackVisualStudio
                 routes.MapHub<LoopyHub>("/loopy");
                 routes.MapHub<NewsHub>("/looney");
                 routes.MapHub<LoopyMessageHub>("/loopymessage");
+                routes.MapHub<ImagesMessageHub>("/zub");
             });
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=FileClient}/{action=Index}/{id?}");
             });
         }
     }

@@ -14,8 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleSignalRMessagePack",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtos", "src\Dtos\Dtos.csproj", "{89B826FE-5AC1-4A91-B781-48BD883C9BBA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreMvcImageStreaming", "src\AspNetCoreMvcImageStreaming\AspNetCoreMvcImageStreaming.csproj", "{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,18 +60,6 @@ Global
 		{89B826FE-5AC1-4A91-B781-48BD883C9BBA}.Release|x64.Build.0 = Release|Any CPU
 		{89B826FE-5AC1-4A91-B781-48BD883C9BBA}.Release|x86.ActiveCfg = Release|Any CPU
 		{89B826FE-5AC1-4A91-B781-48BD883C9BBA}.Release|x86.Build.0 = Release|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Debug|x64.Build.0 = Debug|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Debug|x86.Build.0 = Debug|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Release|x64.ActiveCfg = Release|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Release|x64.Build.0 = Release|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Release|x86.ActiveCfg = Release|Any CPU
-		{DE5CCD75-AE46-4D03-9C83-4D65BC63025E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

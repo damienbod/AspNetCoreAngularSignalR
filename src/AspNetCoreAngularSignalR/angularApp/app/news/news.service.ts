@@ -78,13 +78,13 @@ export class NewsService {
             this.store.dispatch(new NewsActions.ReceivedGroupHistoryAction(newsItems));
         });
 
-        this._hubConnection.start()
-            .then(() => {
-                console.log('Hub connection started')
-            })
-            .catch(() => {
-                console.log('Error while establishing connection')
-            });
+        //this._hubConnection.start()
+        //    .then(() => {
+        //        console.log('Hub connection started')
+        //    })
+        //    .catch(() => {
+        //        console.log('Error while establishing connection')
+        //    });
     }
 
 }
