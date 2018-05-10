@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using AspNetCoreAngularSignalR.SignalRHubs;
 using AspNetCoreAngularSignalR.Providers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Angular2WebpackVisualStudio
 {
@@ -54,7 +55,7 @@ namespace Angular2WebpackVisualStudio
             services.AddSignalR()
               .AddMessagePackProtocol();
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +68,8 @@ namespace Angular2WebpackVisualStudio
                  "/home",
                  "/news"
              };
+
+            app.UseHsts();
 
             app.Use(async (context, next) =>
             {
