@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Upload an image</title>
+</head>
+    <body>
+        <div>
+        <form enctype="multipart/form-data" method="post" action="https://localhost:44326/api/imageupload/files" id="ajaxUploadForm" novalidate="novalidate">
+
+            <fieldset>
+                <legend style="padding-top: 10px; padding-bottom: 10px;">Uploaded an Image</legend>
+
+                <div class="col-xs-12" style="padding: 10px;">
+                    <div class="col-xs-4">
+                        <label>Description</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <textarea rows="2" placeholder="Description" class="form-control" name="description" id="description"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-xs-12" style="padding: 10px;">
+                    <div class="col-xs-4">
+                        <label>Upload</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input type="file"  name="file" id="fileInput">
+                    </div>
+                </div>
+
+                <div class="col-xs-12" style="padding: 10px;">
+                    <div class="col-xs-4">
+                        <input type="submit" value="Upload" id="ajaxUploadButton" class="btn">
+                    </div>
+                    <div class="col-xs-7">
+                        
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
