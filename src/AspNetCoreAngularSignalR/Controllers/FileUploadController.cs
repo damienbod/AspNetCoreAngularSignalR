@@ -45,19 +45,17 @@ namespace AspNetCoreAngularSignalR.Controllers
                             var imageMessage = new ImageMessage
                             {
                                 ImageHeaders = "data:" + file.ContentType + ";base64,",
-                                ImageBinary = Convert.ToBase64String(memoryStream.ToArray())
+                                ImageBinary = memoryStream.ToArray()
                             };
 
-                            //return File(memoryStream.ToArray(), file.ContentType);
                             //await _hubContext.Clients.All.SendAsync("ImageMessage", file.OpenReadStream(), file.ContentType);
-                            //await _hubContext.Clients.All.SendAsync("ImageMessage", File(memoryStream.ToArray(), file.ContentType));
                             await _hubContext.Clients.All.SendAsync("ImageMessage", imageMessage);
                         }
                     }
                 }
             }
 
-            return View("Views/FileClient/Index.cshtml");
+            return Redirect("/FileClient/Index");
         }
     }
 }
