@@ -4,31 +4,7 @@
 
    <a href="https://localhost:44324/FileClient/Index" target="_blank">Upload Images</a> 
 
-   <!--<div class="row" *ngIf="messages.length > 0">
-       <div class="table-responsive">
-           <table class="table table-striped">
-               <thead>
-                   <tr>
-                       <th>#</th>
-                       <th>Images</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   <tr *ngFor="let message of messages; let i = index">
-                       <td>{{i + 1}}</td>
-                       <td>{{message}}</td>
-                   </tr>
-               </tbody>
-           </table>
-       </div>
-   </div>-->
-
     <div class="row" *ngIf="images.length > 0">
-        <img *ngFor="let image of images;" [src]="image.imageHeaders + image.imageBinary">
-    </div>
-
-    <div class="row" *ngIf="messages.length <= 0">
-        <br />
-        <span>No images</span>
+        <img *ngFor="let image of images;" width="150" style="margin-right:5px" [src]="image.imageHeaders + image.imageBinary">
     </div>
 </div>

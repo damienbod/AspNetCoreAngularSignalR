@@ -7,11 +7,6 @@ namespace AspNetCoreAngularSignalR.SignalRHubs
 {
     public class ImagesMessageHub : Hub
     {
-        public Task SendFileNameUpload(string filename)
-        {
-            return Clients.All.SendAsync("SendFileNameUpload", filename);
-        }
-
         public Task ImageMessage(ImageMessage file)
         {
             return Clients.All.SendAsync("ImageMessage", file);
