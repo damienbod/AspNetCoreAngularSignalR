@@ -10,6 +10,7 @@ using AspNetCoreAngularSignalR.SignalRHubs;
 using AspNetCoreAngularSignalR.Providers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using AspNetCoreAngularSignalR;
 
 namespace Angular2WebpackVisualStudio
 {
@@ -30,6 +31,8 @@ namespace Angular2WebpackVisualStudio
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ValidateMimeMultipartContentFilter>();
+
             var sqlConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<NewsContext>(options =>
@@ -66,7 +69,8 @@ namespace Angular2WebpackVisualStudio
 
             var angularRoutes = new[] {
                  "/home",
-                 "/news"
+                 "/news",
+                 "/images"
              };
 
             app.UseHsts();
@@ -92,13 +96,14 @@ namespace Angular2WebpackVisualStudio
                 routes.MapHub<LoopyHub>("/loopy");
                 routes.MapHub<NewsHub>("/looney");
                 routes.MapHub<LoopyMessageHub>("/loopymessage");
+                routes.MapHub<ImagesMessageHub>("/zub");
             });
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=FileClient}/{action=Index}/{id?}");
             });
         }
     }

@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
+import { ImagesModule } from './images/images.module';
 import { NewsModule } from './news/news.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -19,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         SharedModule,
         CoreModule.forRoot(),
         HomeModule,
+        ImagesModule,
         NewsModule,
         StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({

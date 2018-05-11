@@ -77,14 +77,6 @@ export class NewsService {
             console.log(newsItems);
             this.store.dispatch(new NewsActions.ReceivedGroupHistoryAction(newsItems));
         });
-
-        this._hubConnection.start()
-            .then(() => {
-                console.log('Hub connection started')
-            })
-            .catch(() => {
-                console.log('Error while establishing connection')
-            });
     }
 
 }
