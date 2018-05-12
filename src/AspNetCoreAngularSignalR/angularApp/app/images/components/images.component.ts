@@ -20,15 +20,6 @@ export class ImagesComponent implements OnInit {
     constructor() {
     }
 
-    public sendMessage(): void {
-        const data = `Sent: ${this.message}`;
-
-        if (this._hubConnection) {
-            this._hubConnection.invoke('SendFileNameUpload', data);
-        }
-        this.messages.push(data);
-    }
-
     ngOnInit() {
         this._hubConnection = new signalR.HubConnectionBuilder()
             .withUrl('https://localhost:44324/zub')
