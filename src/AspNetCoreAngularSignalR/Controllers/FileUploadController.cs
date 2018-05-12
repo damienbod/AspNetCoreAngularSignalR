@@ -37,7 +37,6 @@ namespace AspNetCoreAngularSignalR.Controllers
                         contentTypes.Add(file.ContentType);
 
                         names.Add(fileName); 
-                        await _hubContext.Clients.All.SendAsync("SendFileNameUpload", fileName);
                         using (var memoryStream = new MemoryStream())
                         {
                             await file.CopyToAsync(memoryStream);
@@ -48,7 +47,6 @@ namespace AspNetCoreAngularSignalR.Controllers
                                 ImageBinary = memoryStream.ToArray()
                             };
 
-                            //await _hubContext.Clients.All.SendAsync("ImageMessage", file.OpenReadStream(), file.ContentType);
                             await _hubContext.Clients.All.SendAsync("ImageMessage", imageMessage);
                         }
                     }
