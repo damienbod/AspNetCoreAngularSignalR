@@ -25,7 +25,6 @@ namespace AspNetCoreAngularSignalR.Controllers
         [ServiceFilter(typeof(ValidateMimeMultipartContentFilter))]
         public async Task<IActionResult> UploadFiles(FileDescriptionShort fileDescriptionShort)
         {
-            var names = new List<string>();
             var contentTypes = new List<string>();
             if (ModelState.IsValid)
             {
@@ -36,7 +35,6 @@ namespace AspNetCoreAngularSignalR.Controllers
                         var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
                         contentTypes.Add(file.ContentType);
 
-                        names.Add(fileName); 
                         using (var memoryStream = new MemoryStream())
                         {
                             await file.CopyToAsync(memoryStream);
