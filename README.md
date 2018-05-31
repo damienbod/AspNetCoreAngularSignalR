@@ -19,6 +19,8 @@
 
 ## History
 
+2018-05-31: Updated to .NET Core 2.1
+
 2018-05-27: Updated to Angular 6.0.3
 
 2018-05-12: Updated to Angular 6.0.1, using message pack SignalR extension method in client
