@@ -19,6 +19,8 @@
 
 ## History
 
+2018-08-03: Updated to .NET Core 2.1.2, Angular 6.1.0
+
 2018-05-31: Updated to .NET Core 2.1
 
 2018-05-27: Updated to Angular 6.0.3
