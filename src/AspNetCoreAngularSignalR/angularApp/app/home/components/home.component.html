@@ -1,17 +1,17 @@
 ﻿<div class="container-fluid">
-
     <h1>Send some basic messages</h1>
-
-
-    <div class="row">
-        <form class="form-inline" (ngSubmit)="sendMessage()" #messageForm="ngForm">
-            <div class="form-group">
+    <form class="form-inline" (ngSubmit)="sendMessage()" #messageForm="ngForm">
+        <div class="row">
+            <div class="col">
                 <label class="sr-only" for="message">Message</label>
                 <input type="text" class="form-control" id="message" placeholder="your message..." name="message" [(ngModel)]="message" required>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!messageForm.valid">Send SignalR Message</button>
-        </form>
-    </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary" [disabled]="!messageForm.valid">Send SignalR Message</button>
+            </div>
+        </div>
+    </form>
+    <div style="padding:10px"></div>
     <div class="row" *ngIf="messages.length > 0">
         <div class="table-responsive">
             <table class="table table-striped">
