@@ -1,50 +1,53 @@
 ﻿<div class="container-fluid">
-
-    <div class="row">
-
-        <div class="form-inline" >
-            <div class="form-group">
-                
-                <label for="group">Group: </label>
-                <select class="form-control" type="number" [(ngModel)]="group">
-                    <option *ngFor="let g of (newsState$|async)?.news.groups" [ngValue]="g">{{g}}</option>
-                </select>
-
-              
-                <label for="author">Author: </label>
-                <input type="text" class="form-control" id="author" placeholder="your name" name="author" [(ngModel)]="author" required>
+    <div class="form-horizontal" style="padding: 10px 0;">
+        <div class="row">
+            <div class="col">
+                <label class="col-sm-2 control-label" for="group">Group: </label>
+                <div class="col-sm-9">
+                    <select class="form-control" type="number" [(ngModel)]="group">
+                        <option *ngFor="let g of (newsState$|async)?.news.groups" [ngValue]="g">{{g}}</option>
+                    </select>
+                </div>
             </div>
-            <button class="btn btn-primary" style="width:150px;" (click)="join()">Join</button>
-            <button class="btn btn-primary" style="width:150px;" (click)="leave()">Leave</button>
+            <div class="col">
+                <label class="col-sm-2 control-label" for="author">Author: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="author" placeholder="your name" name="author" [(ngModel)]="author" required>
+                </div>
+            </div>
+            <div class="col">
+                
+                <div class="col-sm-9">
+                    <button class="btn btn-primary col-sm-12" style="margin-bottom:5px" (click)="join()">Join</button>
+                    <button class="btn btn-primary col-sm-12" (click)="leave()">Leave</button>
+                </div>
+            </div>
         </div>
     </div>
-
     <hr />
 
-    <div class="row">
-
-        <form class="form-horizontal" style="padding: 10px 0;" (ngSubmit)="sendNewsItem()" #newsItemForm="ngForm">
-            <div class="form-group">
+    <form class="form-horizontal" style="padding: 10px 0;" (ngSubmit)="sendNewsItem()" #newsItemForm="ngForm">
+        <div class="row">
+            <div class="col">
                 <label for="header" class="col-sm-2 control-label">Header</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="header" placeholder="your header..." name="header" [(ngModel)]="newsItem.header" required>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="col">
                 <label for="newsText" class="col-sm-2 control-label">Text</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="newsText" placeholder="your newsText..." name="newsText" [(ngModel)]="newsItem.newsText" required>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="col">
                 <label for="newsText" class="col-sm-2 control-label"></label>
                 <div class="col-sm-9">
                     <button type="submit" class="btn btn-primary col-sm-12" [disabled]="!newsItemForm.valid">Send News to: {{group}}</button>
                 </div>
             </div>
-            
-        </form>
-    </div>
+        </div>
+    </form>
 
     <div class="row" *ngIf="newsItems?.length > 0">
         <div class="table-responsive">
@@ -70,7 +73,7 @@
             </table>
         </div>
     </div>
- 
+
     <div class="row" *ngIf="newsItems?.length <= 0">
         <span>No news items</span>
     </div>
