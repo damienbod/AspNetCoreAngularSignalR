@@ -23,7 +23,7 @@
     "lint": "tslint ./angularApp"
   },
   "dependencies": {
-    "bootstrap": "3.3.7",
+    "bootstrap": "4.1.3",
     "@aspnet/signalr": "1.0.2",
     "@ngrx/effects": "6.1.0",
     "@ngrx/store": "6.1.0",
