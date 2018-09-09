@@ -19,6 +19,8 @@
 
 ## History
 
+2018-09-09: Updated  Angular 6.1.7
+
 2018-08-03: Updated to .NET Core 2.1.2, Angular 6.1.0, bootstrap 4
 
 2018-05-31: Updated to .NET Core 2.1
