@@ -19,7 +19,7 @@
 
 ## History
 
-2018-10-14: Updated  Angular 6.1.10, .NET Core 2.1.5
+2018-10-14: Updated  Angular 6.1.10, .NET Core 2.1.5, ASP.NET Core SignalR 1.0.4
 
 2018-09-09: Updated  Angular 6.1.7
 
@@ -61,7 +61,7 @@ https://dotnet.myget.org/feed/aspnetcore-ci-dev/package/npm/@aspnet/signalr-clie
 
 ## npm packages
 
-	"@aspnet/signalr": "1.0.2",
+	"@aspnet/signalr": "1.0.4",
 	"msgpack5": "4.2.0"
 
 
