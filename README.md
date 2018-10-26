@@ -19,6 +19,8 @@
 
 ## History
 
+2018-10-26: Updated  Angular 7.0.1
+
 2018-10-14: Updated  Angular 6.1.10, .NET Core 2.1.5, ASP.NET Core SignalR 1.0.4
 
 2018-09-09: Updated  Angular 6.1.7

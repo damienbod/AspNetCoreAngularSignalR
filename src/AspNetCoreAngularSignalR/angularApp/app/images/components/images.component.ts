@@ -29,7 +29,7 @@ export class ImagesComponent implements OnInit {
         this._hubConnection.stop();
 
         this._hubConnection.start().catch(err => {
-            console.error(err.toString())
+            console.error(err.toString());
         });
 
         this._hubConnection.on('ImageMessage', (data: any) => {
