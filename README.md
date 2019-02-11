@@ -19,7 +19,7 @@
 
 ## History
 
-2019-02-11: Updated to Angular 7.2.4
+2019-02-11: Updated to Angular 7.2.4, NGRX, Nuget packages
 
 2018-12-12: Updated to Angular 7.1.3
 
