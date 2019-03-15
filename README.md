@@ -19,6 +19,8 @@
 
 ## History
 
+2019-03-15: Updated to Angular 7.2.9, Nuget packages
+
 2019-02-24: Updated to Angular 7.2.6, Nuget packages
 
 2019-02-11: Updated to Angular 7.2.4, NGRX, Nuget packages
