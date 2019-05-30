@@ -19,6 +19,8 @@
 
 ## History
 
+2019-05-30: Updated to Angular 8.0.0
+
 2019-04-30: Updated packages
 
 2019-03-29: Updated to Angular 7.2.11
