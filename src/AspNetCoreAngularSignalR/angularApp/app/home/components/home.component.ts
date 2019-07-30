@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HubConnection } from '@aspnet/signalr';
-import * as signalR from '@aspnet/signalr';
+import { HubConnection } from '@microsoft/signalr';
+import * as signalR from '@microsoft/signalr';
 
 @Component({
     selector: 'app-home-component',
