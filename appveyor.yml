@@ -7,8 +7,17 @@ install:
   - ECHO %APPVEYOR_BUILD_WORKER_IMAGE%
   - ps: Install-Product node $env:nodejs_version
   - dotnet --version
-  - dotnet restore
   - choco install googlechrome
+  # Download .NET Core 3.0 Preview 7 SDK and add to PATH
+  - ps: $urlCurrent = "https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-3.0.100-preview7-windows-x64-installer"
+  - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetsdk"
+  - ps: mkdir $env:DOTNET_INSTALL_DIR -Force | Out-Null
+  - ps: $tempFileCurrent = [System.IO.Path]::GetTempFileName()
+  - ps: (New-Object System.Net.WebClient).DownloadFile($urlCurrent, $tempFileCurrent)
+  - ps: Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory($tempFileCurrent, $env:DOTNET_INSTALL_DIR)
+  - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
+  - dotnet --version
+  - dotnet restore
 build_script:
 - dotnet build
 - npm -g install npm@latest
