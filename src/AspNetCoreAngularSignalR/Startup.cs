@@ -16,17 +16,12 @@ namespace Angular2WebpackVisualStudio
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -57,11 +52,12 @@ namespace Angular2WebpackVisualStudio
             services.AddSignalR()
               .AddMessagePackProtocol();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddControllersWithViews().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddRazorPages().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
             var angularRoutes = new[] {
                  "/home",
@@ -87,20 +83,27 @@ namespace Angular2WebpackVisualStudio
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseSignalR(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapHub<LoopyHub>("/loopy");
-                routes.MapHub<NewsHub>("/looney");
-                routes.MapHub<LoopyMessageHub>("/loopymessage");
-                routes.MapHub<ImagesMessageHub>("/zub");
+                endpoints.MapHub<LoopyHub>("/loopy");
+                endpoints.MapHub<NewsHub>("/looney");
+                endpoints.MapHub<LoopyMessageHub>("/loopymessage");
+                endpoints.MapHub<ImagesMessageHub>("/zub");
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=FileClient}/{action=Index}/{id?}");
-            });
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=FileClient}/{action=Index}/{id?}");
+            //});
         }
     }
 }

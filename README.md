@@ -19,6 +19,8 @@
 
 ## History
 
+2019-07-30: Updated to ASP.NET Core 3.0 preview 7, @microsoft/signalr
+
 2019-07-30: Updated to Angular 8.1.3
 
 2019-05-30: Updated to Angular 8.0.0
