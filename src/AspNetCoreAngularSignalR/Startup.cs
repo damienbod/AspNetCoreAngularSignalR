@@ -2,10 +2,8 @@
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using AspNetCoreAngularSignalR.SignalRHubs;
 using AspNetCoreAngularSignalR.Providers;
 using Microsoft.EntityFrameworkCore;
@@ -56,7 +54,6 @@ namespace Angular2WebpackVisualStudio
             services.AddRazorPages().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
             var angularRoutes = new[] {
@@ -97,13 +94,6 @@ namespace Angular2WebpackVisualStudio
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=FileClient}/{action=Index}/{id?}");
-            //});
         }
     }
 }
