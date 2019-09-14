@@ -16,6 +16,8 @@
 
 ## History
 
+2019-09-14: Updated to ASP.NET Core 3.0 preview 9, Angular 8.2.6
+
 2019-09-01: Updated to ASP.NET Core 3.0 preview 8, Angular 8.2.4
 
 2019-08-13: Updated to ASP.NET Core 3.0 preview 8, Angular 8.2.2
