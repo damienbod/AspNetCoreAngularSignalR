@@ -18,6 +18,8 @@
 
 ## History
 
+2020-02-25: Updated packages
+
 2020-01-02: Updated packages
 
 2019-11-17: Updated Angular 8.2.14
