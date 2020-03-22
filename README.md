@@ -18,6 +18,8 @@
 
 ## History
 
+2020-03-22: Updated Angular 9.0.7
+
 2020-02-25: Updated packages
 
 2020-01-02: Updated packages
