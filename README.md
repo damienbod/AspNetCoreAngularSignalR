@@ -18,6 +18,8 @@
 
 ## History
 
+2020-11-29: Updated .NET 5, Angular 11.0.2
+
 2020-03-22: Updated Angular 9.0.7
 
 2020-02-25: Updated packages

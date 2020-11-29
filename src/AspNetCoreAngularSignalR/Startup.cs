@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using AspNetCoreAngularSignalR.SignalRHubs;
 using AspNetCoreAngularSignalR.Providers;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 using AspNetCoreAngularSignalR;
 
 namespace Angular2WebpackVisualStudio
@@ -50,7 +49,7 @@ namespace Angular2WebpackVisualStudio
             services.AddSignalR()
               .AddMessagePackProtocol();
 
-            services.AddControllersWithViews().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app)
