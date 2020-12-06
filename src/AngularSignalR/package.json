@@ -27,9 +27,9 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2",
     "@microsoft/signalr": "5.0.0",
-    "@ngrx/effects": "11.0.3",
-    "@ngrx/store": "11.0.3",
-    "@ngrx/store-devtools": "11.0.3",
+    "@ngrx/effects": "10.0.1",
+    "@ngrx/store": "10.0.1",
+    "@ngrx/store-devtools": "10.0.1",
     "msgpack5": "4.2.1"
   },
   "devDependencies": {
