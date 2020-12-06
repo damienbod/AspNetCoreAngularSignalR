@@ -38,7 +38,10 @@ namespace Angular2WebpackVisualStudio
                     builder =>
                     {
                         builder
-                            .AllowAnyOrigin()
+                            .AllowCredentials()
+                            .WithOrigins(
+                                "https://localhost:4200")
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });
