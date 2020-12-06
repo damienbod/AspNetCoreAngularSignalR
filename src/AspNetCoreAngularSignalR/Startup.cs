@@ -54,24 +54,7 @@ namespace Angular2WebpackVisualStudio
 
         public void Configure(IApplicationBuilder app)
         {
-            var angularRoutes = new[] {
-                 "/home",
-                 "/news",
-                 "/images"
-             };
-
             app.UseHsts();
-
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Path.HasValue && null != angularRoutes.FirstOrDefault(
-                    (ar) => context.Request.Path.Value.StartsWith(ar, StringComparison.OrdinalIgnoreCase)))
-                {
-                    context.Request.Path = new PathString("/");
-                }
-
-                await next();
-            });
 
             app.UseCors("AllowAllOrigins");
 
