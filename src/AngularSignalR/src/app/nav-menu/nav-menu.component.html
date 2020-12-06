@@ -1,0 +1,44 @@
+
+<nav class="bg-dark mb-4 navbar navbar-dark navbar-expand-md">
+  <a [routerLink]="['/home']" class="navbar-brand">
+      <em>Azure AD OIDC with APIs</em>
+  </a>
+  <button
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      class="navbar-toggler"
+      data-target="#topNavbarCollapse"
+      data-toggle="collapse"
+      type="button"
+  >
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="topNavbarCollapse" *ngIf="isAuthenticated$ | async as isAuthenticated">
+      <ul class="mr-auto navbar-nav">
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a [routerLink]="['/directApiCall']" class="nav-link">Direct API call</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a [routerLink]="['/graphApiCall']" class="nav-link">Graph API call</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a [routerLink]="['/applicationApiCall']" class="nav-link">Application API call</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a [routerLink]="['/delegatedApiCall']" class="nav-link">Delegated API call</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" *ngIf="isAuthenticated" (click)="logout()">Logout</a></li>
+      </ul>
+      <ul class="navbar-nav"></ul>
+  </div>
+
+  <div class="collapse navbar-collapse" id="topNavbarCollapse" *ngIf="!(isAuthenticated$ | async)">
+    <ul class="mr-auto navbar-nav">
+      <li class="nav-item"><a class="nav-link" (click)="login()">Login</a></li>
+    </ul>
+    <ul class="navbar-nav"></ul>
+  </div>
+
+</nav>
