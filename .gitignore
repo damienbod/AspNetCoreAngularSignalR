@@ -325,3 +325,4 @@ src/AngularWebpackVisualStudio/wwwroot/index.html
 src/AngularWebpackVisualStudio/wwwroot/
 src/AngularRedux/wwwroot
 src/AspNetCoreAngularSignalR/wwwroot/
+/src/AngularSignalR/dist/

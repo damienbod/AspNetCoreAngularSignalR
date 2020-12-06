@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { NewsState } from '../store/news.state';
 import * as NewsActions from '../store/news.action';
 import { NewsItem } from '../models/news-item';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-news-component',
