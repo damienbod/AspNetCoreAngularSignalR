@@ -24,13 +24,13 @@ export class NewsEffects {
   joinGroupAction$ = createEffect(() =>
     this.actions$.pipe(
       ofType(newsAction.joinGroupAction),
-      map((action) => action.payload),
-      switchMap((payload) => {
+      switchMap(({payload}) => {
         this.newsService.joinGroup(payload);
         return of(newsAction.joinGroupFinishedAction({ payload }));
       })
     )
   );
+
   leaveGroupAction$ = createEffect(() =>
     this.actions$.pipe(
       ofType(newsAction.leaveGroupAction),
@@ -48,7 +48,7 @@ export class NewsEffects {
       switchMap(() =>
         this.newsService.getAllGroups().pipe(
           map((payload) =>
-            newsAction.selectAllNewsGroupsFinishedAction({ payload: payload })
+            newsAction.selectAllNewsGroupsFinishedAction({ payload })
           ),
           catchError((error) => of(error))
         )

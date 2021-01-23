@@ -61,7 +61,7 @@ const newsReducerInternal = createReducer(
     };
   }),
   on(newsAction.selectAllNewsGroupsFinishedAction, (state, { payload }) => {
-    const allGroups = [...state.groups, payload];
+    const allGroups = [...state.groups, ...payload];
     const allGroupsWithoutDuplicates = [...new Set(allGroups)];
     return {
       ...state,
