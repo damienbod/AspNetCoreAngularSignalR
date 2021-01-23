@@ -16,11 +16,8 @@ export class NewsComponent implements OnInit {
   newsItem: NewsItem;
   group = 'IT';
   author = 'unknown';
-  groups = ['IT', 'global', 'sport'];
-
   group$: Observable<string[]>;
   newsItems$: Observable<NewsItem[]>;
-
 
   constructor(private store: Store<any>) {
     this.group$ = this.store.pipe(select(fromSelectorsStore.selectGroups));
