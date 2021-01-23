@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { of , Observable } from 'rxjs';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 import * as newsAction from './news.action';
@@ -9,24 +8,33 @@ import { NewsService } from '../news.service';
 
 @Injectable()
 export class NewsEffects {
+  constructor(private  newsService: NewsService, private actions$: Actions) {}
 
-    @Effect()
-    sendNewItem$: Observable<Action> = this.actions$.pipe(
-        ofType<newsAction.SendNewsItemAction>(newsAction.SEND_NEWS_ITEM),
-        switchMap((action: newsAction.SendNewsItemAction) => {
-            this.newsService.send(action.newsItem);
-            return of(new newsAction.SendNewsItemActionComplete(action.newsItem));
-        })
-    );
+  sendNewsItemAction$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(newsAction.sendNewsItemAction),
+      map((action) => action.payload),
+      switchMap((payload) => {
+        this.newsService.send(payload);
+        return of(newsAction.sendNewsItemFinishedAction({payload}));
+      })
+    )
+  );
 
-    @Effect()
-    joinGroup$: Observable<Action> = this.actions$.pipe(
-        ofType<newsAction.JoinGroupAction>(newsAction.JOIN_GROUP),
-        switchMap((action: newsAction.JoinGroupAction ) => {
-            this.newsService.joinGroup(action.group);
-            return of(new newsAction.JoinGroupActionComplete(action.group));
-        })
-    );
+  joinGroupAction$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(newsAction.joinGroupAction),
+      map((action) => action.payload),
+      switchMap((payload) => {
+        this.newsService.joinGroup(payload);
+        return of(newsAction.joinGroupFinishedAction({payload}));
+      })
+    )
+  );
+}
+
+
+
 
     @Effect()
     leaveGroup$: Observable<Action> = this.actions$.pipe(
@@ -50,8 +58,3 @@ export class NewsEffects {
         })
     );
 
-    constructor(
-        private newsService: NewsService,
-        private actions$: Actions
-    ) { }
-}
