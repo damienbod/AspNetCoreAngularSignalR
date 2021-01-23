@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { NewsState } from '../store/news.state';
 import { NewsItem } from '../models/news-item';
 import { Observable } from 'rxjs';
+import * as fromSelectorsStore from '../store/news.selectors';
+import { select } from '@ngrx/store';
 
 @Component({
   selector: 'app-news-component',
@@ -12,20 +14,17 @@ import { Observable } from 'rxjs';
 export class NewsComponent implements OnInit {
   public async: any;
   newsItem: NewsItem;
-  newsItems: NewsItem[] = [];
   group = 'IT';
   author = 'unknown';
-  newsState$: Observable<NewsState>;
   groups = ['IT', 'global', 'sport'];
 
-  constructor(private store: Store<any>) {
-    this.newsState$ = this.store.select<NewsState>((state) => state.news);
+  group$: Observable<string[]>;
+  newsItems$: Observable<NewsItem[]>;
 
-    this.store
-      .select<NewsState>((state) => state.news)
-      .subscribe((o: NewsState) => {
-        this.newsItems = o.news.newsItems;
-      });
+
+  constructor(private store: Store<any>) {
+    this.group$ = this.store.pipe(select(fromSelectorsStore.selectGroups));
+    this.newsItems$ = this.store.pipe(select(fromSelectorsStore.selectNewsItems));
 
     this.newsItem = new NewsItem();
     this.newsItem.AddData('', '', this.author, this.group);

@@ -3,10 +3,8 @@ import * as newsAction from './news.action';
 import { createReducer, on, Action } from '@ngrx/store';
 
 export const initialState: NewsState = {
-  news: {
-    newsItems: [],
-    groups: ['IT', 'global', 'sport'],
-  },
+  newsItems: [],
+  groups: ['IT', 'global', 'sport'],
 };
 
 // on(
@@ -64,10 +62,8 @@ const newsReducerInternal = createReducer(
     const { newsItems, groups } = news;
     return {
       ...state,
-      news: {
-        newsItems,
-        groups: [...groups, payload],
-      },
+      newsItems,
+      groups: [...groups, payload],
     };
   }),
   on(newsAction.recieveNewsItemAction, (state, { payload }) => {
@@ -75,10 +71,8 @@ const newsReducerInternal = createReducer(
     const { newsItems, groups } = news;
     return {
       ...state,
-      news: {
-        newsItems: [...newsItems, payload],
-        groups,
-      },
+      newsItems: [...newsItems, payload],
+      groups,
     };
   }),
   on(newsAction.recieveNewsGroupHistoryAction, (state, { payload }) => {
@@ -86,10 +80,8 @@ const newsReducerInternal = createReducer(
     const { newsItems, groups } = news;
     return {
       ...state,
-      news: {
-        newsItems: [...payload],
-        groups,
-      },
+      newsItems: [...payload],
+      groups,
     };
   }),
   on(newsAction.selectAllNewsGroupsFinishedAction, (state, { payload }) => {
@@ -97,10 +89,8 @@ const newsReducerInternal = createReducer(
     const { newsItems, groups } = news;
     return {
       ...state,
-      news: {
-        newsItems,
-        groups: [...payload],
-      },
+      newsItems,
+      groups: [...payload],
     };
   }),
   on(newsAction.recieveGroupLeftAction, (state, { payload }) => {
@@ -116,10 +106,8 @@ const newsReducerInternal = createReducer(
 
     return {
       ...state,
-      news: {
-        newsItems,
-        groups: [...data],
-      },
+      newsItems,
+      groups: [...data],
     };
   })
 );

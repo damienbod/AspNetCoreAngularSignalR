@@ -6,7 +6,7 @@
         <div class="col-sm-9">
           <select class="form-control" type="number" [(ngModel)]="group">
             <option
-              *ngFor="let g of (newsState$ | async)?.news.groups"
+              *ngFor="let g of (group$ | async)"
               [ngValue]="g"
             >
               {{ g }}
@@ -96,32 +96,37 @@
     </div>
   </form>
 
-  <div class="row" *ngIf="newsItems?.length > 0">
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>header</th>
-            <th>Text</th>
-            <th>Author</th>
-            <th>Group</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of newsItems; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ item.header }}</td>
-            <td>{{ item.newsText }}</td>
-            <td>{{ item.author }}</td>
-            <td>{{ item.newsGroup }}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div *ngIf="newsItems$ | async as newsItems">
+    <div class="row" *ngIf="newsItems?.length > 0; else noitemsfound">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>header</th>
+              <th>Text</th>
+              <th>Author</th>
+              <th>Group</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of newsItems; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.header }}</td>
+              <td>{{ item.newsText }}</td>
+              <td>{{ item.author }}</td>
+              <td>{{ item.newsGroup }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <div class="row" *ngIf="newsItems?.length <= 0">
-    <span>No news items</span>
-  </div>
+  <ng-template #noitemsfound>
+    <div class="row">
+      <span>No items found</span>
+    </div>
+  </ng-template>
+
 </div>
