@@ -14,26 +14,23 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        AppRoutes,
-        SharedModule,
-        CoreModule.forRoot(),
-        HomeModule,
-        ImagesModule,
-        NewsModule,
-        StoreModule.forRoot({}),
-        StoreDevtoolsModule.instrument({
-            maxAge: 25 //  Retains last 25 states
-        }),
-        EffectsModule.forRoot([])
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutes,
+    SharedModule,
+    CoreModule.forRoot(),
+    HomeModule,
+    ImagesModule,
+    NewsModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, //  Retains last 25 states
+    }),
+    EffectsModule.forRoot([]),
+  ],
 
-    declarations: [
-        AppComponent
-    ],
+  declarations: [AppComponent],
 
-    bootstrap: [AppComponent],
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}

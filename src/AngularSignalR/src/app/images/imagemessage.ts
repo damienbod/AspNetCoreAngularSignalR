@@ -1,12 +1,11 @@
 export class ImageMessage {
-    public imageBinary = '';
-    public imageHeaders = '';
-  
-    constructor() {
-    }
+  public imageBinary = '';
+  public imageHeaders = '';
 
-    AddData(imageBinary: string, imageHeaders: string) {
-        this.imageBinary = imageBinary;
-        this.imageHeaders = imageHeaders;
-    }
+  constructor() {}
+
+  AddData(imageBinary: string, imageHeaders: string) {
+    this.imageBinary = imageBinary;
+    this.imageHeaders = imageHeaders;
+  }
 }

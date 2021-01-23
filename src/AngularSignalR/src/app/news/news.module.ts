@@ -11,28 +11,22 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { NewsEffects } from './store/news.effects';
 import { newsReducer } from './store/news.reducer';
+import { newsStoreName } from './store/news.selectors';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        HttpClientModule,
-        NewsRoutes,
-        StoreModule.forFeature('news', newsReducer),
-        EffectsModule.forFeature([NewsEffects])
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    NewsRoutes,
+    StoreModule.forFeature(newsStoreName, newsReducer),
+    EffectsModule.forFeature([NewsEffects]),
+  ],
 
-    declarations: [
-        NewsComponent
-    ],
+  declarations: [NewsComponent],
 
-    providers: [
-        NewsService
-    ],
+  providers: [NewsService],
 
-    exports: [
-        NewsComponent
-    ]
+  exports: [NewsComponent],
 })
-
-export class NewsModule { }
+export class NewsModule {}

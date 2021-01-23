@@ -4,18 +4,13 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Configuration } from '../app.constants';
 
 @NgModule({
-    imports: [
-        CommonModule
-    ]
+  imports: [CommonModule],
 })
-
 export class CoreModule {
-    static forRoot(): ModuleWithProviders<CoreModule> {
-        return {
-            ngModule: CoreModule,
-            providers: [
-                Configuration
-            ]
-        };
-    }
+  static forRoot(): ModuleWithProviders<CoreModule> {
+    return {
+      ngModule: CoreModule,
+      providers: [Configuration],
+    };
+  }
 }

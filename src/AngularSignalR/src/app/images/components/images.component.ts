@@ -5,38 +5,34 @@ import * as signalR from '@microsoft/signalr';
 import { ImageMessage } from '../imagemessage';
 
 @Component({
-    selector: 'app-images-component',
-    templateUrl: './images.component.html'
+  selector: 'app-images-component',
+  templateUrl: './images.component.html',
 })
-
 export class ImagesComponent implements OnInit {
-    private _hubConnection: HubConnection | undefined;
-    public async: any;
-    message = '';
-    messages: string[] = [];
+  private _hubConnection: HubConnection | undefined;
+  public async: any;
+  message = '';
+  messages: string[] = [];
 
-    images: ImageMessage[] = [];
+  images: ImageMessage[] = [];
 
-    constructor() {
-    }
+  constructor() {}
 
-    ngOnInit() {
-        this._hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl('https://localhost:44324/zub')
-            .configureLogging(signalR.LogLevel.Trace)
-            .build();
+  ngOnInit() {
+    this._hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('https://localhost:44324/zub')
+      .configureLogging(signalR.LogLevel.Trace)
+      .build();
 
-        this._hubConnection.stop();
+    this._hubConnection.stop();
 
-        this._hubConnection.start().catch(err => {
-            console.error(err.toString());
-        });
+    this._hubConnection.start().catch((err) => {
+      console.error(err.toString());
+    });
 
-        this._hubConnection.on('ImageMessage', (data: any) => {
-            console.log(data);
-            this.images.push(data);
-        });
-
-    }
-
+    this._hubConnection.on('ImageMessage', (data: any) => {
+      console.log(data);
+      this.images.push(data);
+    });
+  }
 }

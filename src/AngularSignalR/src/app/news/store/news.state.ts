@@ -1,10 +1,10 @@
 import { NewsItem } from '../models/news-item';
 
 export interface NewsState {
-    news: NewsStateContainer
-};
+  news: NewsStateContainer;
+}
 
 export interface NewsStateContainer {
-    newsItems: NewsItem[],
-    groups: string[]
-};
+  newsItems: NewsItem[];
+  groups: string[];
+}
