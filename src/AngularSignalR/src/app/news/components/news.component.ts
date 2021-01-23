@@ -1,4 +1,4 @@
-import { sendNewsItemAction, joinGroupAction, leaveGroupAction, selectAllNewsGroupsAction } from './../store/news.action';
+import * as newsAction from './../store/news.action';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NewsState } from '../store/news.state';
@@ -34,19 +34,19 @@ export class NewsComponent implements OnInit {
     public sendNewsItem(): void {
       this.newsItem.newsGroup = this.group;
       this.newsItem.author = this.author;
-      this.store.dispatch(sendNewsItemAction({payload:this.newsItem}));
+      this.store.dispatch(newsAction.sendNewsItemAction({payload:this.newsItem}));
     }
 
     public join(): void {
-      this.store.dispatch(joinGroupAction({payload:this.group}));
+      this.store.dispatch(newsAction.joinGroupAction({payload:this.group}));
     }
 
     public leave(): void {
-      this.store.dispatch(leaveGroupAction({payload:this.group}));
+      this.store.dispatch(newsAction.leaveGroupAction({payload:this.group}));
     }
 
     ngOnInit() {
         console.log('go');
-        this.store.dispatch(selectAllNewsGroupsAction());
+        this.store.dispatch(newsAction.selectAllNewsGroupsAction());
     }
 }
