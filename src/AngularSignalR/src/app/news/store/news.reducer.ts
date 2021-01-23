@@ -40,64 +40,33 @@ export const initialState: NewsState = {
 
 const newsReducerInternal = createReducer(
   initialState,
-  on(
-    newsAction.joinGroupAction,
-    newsAction.joinGroupFinishedAction,
-    newsAction.leaveGroupAction,
-    newsAction.leaveGroupFinishedAction,
-    newsAction.recieveGroupJoinedAction,
-    newsAction.recieveGroupLeftAction,
-    newsAction.recieveNewsGroupHistoryAction,
-    newsAction.recieveNewsItemAction,
-    newsAction.selectAllNewsGroupsAction,
-    newsAction.selectAllNewsGroupsFinishedAction,
-    newsAction.sendNewsItemAction,
-    newsAction.sendNewsItemFinishedAction,
-    (state) => ({
-      ...state,
-    })
-  ),
   on(newsAction.recieveGroupJoinedAction, (state, { payload }) => {
-    const { news } = state;
-    const { newsItems, groups } = news;
     return {
       ...state,
-      newsItems,
-      groups: [...groups, payload],
+      groups: [...state.groups, payload],
     };
   }),
   on(newsAction.recieveNewsItemAction, (state, { payload }) => {
-    const { news } = state;
-    const { newsItems, groups } = news;
     return {
       ...state,
-      newsItems: [...newsItems, payload],
-      groups,
+      newsItems: [...state.newsItems, payload]
     };
   }),
   on(newsAction.recieveNewsGroupHistoryAction, (state, { payload }) => {
-    const { news } = state;
-    const { newsItems, groups } = news;
     return {
       ...state,
       newsItems: [...payload],
-      groups,
     };
   }),
   on(newsAction.selectAllNewsGroupsFinishedAction, (state, { payload }) => {
-    const { news } = state;
-    const { newsItems, groups } = news;
     return {
       ...state,
-      newsItems,
       groups: [...payload],
     };
   }),
   on(newsAction.recieveGroupLeftAction, (state, { payload }) => {
-    const { news } = state;
-    const { newsItems, groups } = news;
     const data = [];
-    for (const entry of state.news.groups) {
+    for (const entry of state.groups) {
       if (entry !== payload) {
         data.push(entry);
       }
@@ -106,7 +75,6 @@ const newsReducerInternal = createReducer(
 
     return {
       ...state,
-      newsItems,
       groups: [...data],
     };
   })
