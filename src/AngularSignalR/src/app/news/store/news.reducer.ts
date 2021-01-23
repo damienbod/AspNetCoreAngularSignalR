@@ -1,17 +1,53 @@
 import { NewsState } from './news.state';
 import * as newsAction from './news.action';
+import { createReducer, on, Action } from '@ngrx/store';
 
 export const initialState: NewsState = {
-    news: {
-        newsItems: [],
-        groups: ['IT', 'global', 'sport']
-    }
+  news: {
+      newsItems: [],
+      groups: ['IT', 'global', 'sport']
+  }
 };
 
-export function newsReducer(state = initialState, action: newsAction.Actions): NewsState {
+
+const newsReducerInternal = createReducer(
+  initialState,
+  on(
+    newsAction.joinGroupAction,
+    newsAction.joinGroupFinishedAction,
+    newsAction.leaveGroupAction,
+    newsAction.leaveGroupFinishedAction,
+    newsAction.recieveGroupJoinedAction,
+    newsAction.recieveGroupLeftAction,
+    newsAction.recieveNewsGroupHistoryAction,
+    newsAction.recieveNewsItemAction,
+    newsAction.selectAllNewsGroupsAction,
+    newsAction.selectAllNewsGroupsFinishedAction,
+    newsAction.sendNewsItemAction,
+    newsAction.sendNewsItemFinishedAction,
+    (state) => ({
+      ...state
+    })
+  ),
+  on(newsAction.recieveGroupJoinedAction, (state, { payload }) => ({
+    ...state,
+    things: [...state.things, payload],
+  })),
+);
+
+export function newsReducer(
+  state: NewsState | undefined,
+  action: Action
+): any {
+  return newsReducerInternal(state, action);
+}
+
+
+
+export function newsReducerOld(state = initialState, action: newsAction.Actions): NewsState {
     switch (action.type) {
 
-        case newsAction.RECEIVED_GROUP_JOINED:
+        case newsAction.recieveGroupJoinedAction:
             return Object.assign({}, state, {
                 news: {
                     newsItems: state.news.newsItems,
@@ -19,7 +55,7 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
                 }
             });
 
-        case newsAction.RECEIVED_NEWS_ITEM:
+        case newsAction.recieveNewsItemAction:
             return Object.assign({}, state, {
                 news: {
                     newsItems: state.news.newsItems.concat(action.newsItem),
@@ -27,7 +63,7 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
                 }
             });
 
-        case newsAction.RECEIVED_GROUP_HISTORY:
+        case newsAction.recieveNewsGroupHistoryAction:
             return Object.assign({}, state, {
                 news: {
                     newsItems: action.newsItems,
@@ -35,7 +71,7 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
                 }
             });
 
-        case newsAction.RECEIVED_GROUP_LEFT:
+        case newsAction.recieveGroupLeftAction:
             const data = [];
             for (const entry of state.news.groups) {
                 if (entry !== action.group) {
@@ -50,7 +86,7 @@ export function newsReducer(state = initialState, action: newsAction.Actions): N
                 }
             });
 
-        case newsAction.SELECTALL_GROUPS_COMPLETE:
+        case newsAction.selectAllNewsGroupsFinishedAction:
             return Object.assign({}, state, {
                 news: {
                     newsItems: state.news.newsItems,
