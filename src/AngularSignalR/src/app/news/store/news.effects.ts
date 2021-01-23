@@ -31,30 +31,27 @@ export class NewsEffects {
       })
     )
   );
+  leaveGroupAction$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(newsAction.leaveGroupAction),
+      map((action) => action.payload),
+      switchMap((payload) => {
+        this.newsService.leaveGroup(payload);
+        return of(newsAction.leaveGroupFinishedAction({payload}));
+      })
+    )
+  );
+
+  selectAllNewsGroups$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(newsAction.selectAllNewsGroupsAction),
+      switchMap(() =>
+      this.newsService.getAllGroups().pipe(
+          map((payload) =>
+          newsAction.selectAllNewsGroupsFinishedAction({ payload: payload })),
+          catchError((error) => of(error))
+        )
+      )
+    )
+  );
 }
-
-
-
-
-    @Effect()
-    leaveGroup$: Observable<Action> = this.actions$.pipe(
-        ofType<newsAction.LeaveGroupAction>(newsAction.LEAVE_GROUP),
-        switchMap((action: newsAction.LeaveGroupAction) => {
-            this.newsService.leaveGroup(action.group);
-            return of(new newsAction.LeaveGroupActionComplete(action.group));
-        })
-    );
-
-    @Effect()
-    getAllGroups$: Observable<Action> = this.actions$.pipe(
-        ofType(newsAction.SELECTALL_GROUPS),
-        switchMap(() => {
-            return this.newsService.getAllGroups().pipe(
-                map((data: string[]) => {
-                    return new newsAction.SelectAllGroupsActionComplete(data);
-                }),
-                catchError((error: any) => of(error)
-                ));
-        })
-    );
-
