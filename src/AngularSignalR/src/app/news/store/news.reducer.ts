@@ -95,6 +95,38 @@ const newsReducerInternal = createReducer(
       };
     }
   ),
+  on(newsAction.selectAllNewsGroupsFinishedAction, (state, { payload }) => {
+	  const { news } = state;
+	  const { newsItems, groups } = news;
+      return {
+        ...state,
+        news: {
+          newsItems,
+          groups: [...payload]
+        }
+      };
+    }
+  ),
+  on(newsAction.recieveGroupLeftAction, (state, { payload }) => {
+	  const { news } = state;
+    const { newsItems, groups } = news;
+    const data = [];
+    for (const entry of state.news.groups) {
+        if (entry !== payload) {
+            data.push(entry);
+        }
+    }
+    console.log(data);
+
+    return {
+      ...state,
+      news: {
+        newsItems,
+        groups: [...data]
+      }
+    };
+    }
+  ),
 );
 
 export function newsReducer(
@@ -103,27 +135,3 @@ export function newsReducer(
 ): any {
   return newsReducerInternal(state, action);
 }
-
-
-case newsAction.recieveGroupLeftAction:
-    const data = [];
-    for (const entry of state.news.groups) {
-        if (entry !== action.group) {
-            data.push(entry);
-        }
-    }
-    console.log(data);
-    return Object.assign({}, state, {
-        news: {
-            newsItems: state.news.newsItems,
-            groups: data
-        }
-    });
-
-case newsAction.selectAllNewsGroupsFinishedAction:
-    return Object.assign({}, state, {
-        news: {
-            newsItems: state.news.newsItems,
-            groups: action.groups
-        }
-    });
