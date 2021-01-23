@@ -8,7 +8,7 @@ import { NewsService } from '../news.service';
 
 @Injectable()
 export class NewsEffects {
-  constructor(private  newsService: NewsService, private actions$: Actions) {}
+  constructor(private newsService: NewsService, private actions$: Actions) {}
 
   sendNewsItemAction$ = createEffect(() =>
     this.actions$.pipe(
@@ -16,7 +16,7 @@ export class NewsEffects {
       map((action) => action.payload),
       switchMap((payload) => {
         this.newsService.send(payload);
-        return of(newsAction.sendNewsItemFinishedAction({payload}));
+        return of(newsAction.sendNewsItemFinishedAction({ payload }));
       })
     )
   );
@@ -27,7 +27,7 @@ export class NewsEffects {
       map((action) => action.payload),
       switchMap((payload) => {
         this.newsService.joinGroup(payload);
-        return of(newsAction.joinGroupFinishedAction({payload}));
+        return of(newsAction.joinGroupFinishedAction({ payload }));
       })
     )
   );
@@ -37,7 +37,7 @@ export class NewsEffects {
       map((action) => action.payload),
       switchMap((payload) => {
         this.newsService.leaveGroup(payload);
-        return of(newsAction.leaveGroupFinishedAction({payload}));
+        return of(newsAction.leaveGroupFinishedAction({ payload }));
       })
     )
   );
@@ -46,9 +46,10 @@ export class NewsEffects {
     this.actions$.pipe(
       ofType(newsAction.selectAllNewsGroupsAction),
       switchMap(() =>
-      this.newsService.getAllGroups().pipe(
+        this.newsService.getAllGroups().pipe(
           map((payload) =>
-          newsAction.selectAllNewsGroupsFinishedAction({ payload: payload })),
+            newsAction.selectAllNewsGroupsFinishedAction({ payload: payload })
+          ),
           catchError((error) => of(error))
         )
       )

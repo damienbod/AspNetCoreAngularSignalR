@@ -5,14 +5,16 @@ import { NewsItem } from '../models/news-item';
 export const joinGroupAction = createAction(
   '[News] JOIN_GROUP',
   props<{ payload: string }>()
-);export const joinGroupFinishedAction = createAction(
+);
+export const joinGroupFinishedAction = createAction(
   '[News] JOIN_GROUP_COMPLETE',
   props<{ payload: string }>()
 );
 export const leaveGroupAction = createAction(
   '[News] LEAVE_GROUP',
   props<{ payload: string }>()
-);export const leaveGroupFinishedAction = createAction(
+);
+export const leaveGroupFinishedAction = createAction(
   '[News] LEAVE_GROUP_COMPLETE',
   props<{ payload: string }>()
 );
@@ -24,7 +26,9 @@ export const sendNewsItemFinishedAction = createAction(
   '[News] SEND_NEWS_ITEM_COMPLETE',
   props<{ payload: NewsItem }>()
 );
-export const selectAllNewsGroupsAction = createAction('[News] SELECTALL_GROUPS');
+export const selectAllNewsGroupsAction = createAction(
+  '[News] SELECTALL_GROUPS'
+);
 export const selectAllNewsGroupsFinishedAction = createAction(
   '[News] SELECTALL_GROUPS_COMPLETE',
   props<{ payload: string[] }>()

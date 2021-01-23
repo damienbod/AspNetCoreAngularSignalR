@@ -7,20 +7,10 @@ import { ImagesComponent } from './components/images.component';
 import { ImagesRoutes } from './images.routes';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        HttpClientModule,
-        ImagesRoutes
-    ],
+  imports: [CommonModule, FormsModule, HttpClientModule, ImagesRoutes],
 
-    declarations: [
-        ImagesComponent
-    ],
+  declarations: [ImagesComponent],
 
-    exports: [
-        ImagesComponent
-    ]
+  exports: [ImagesComponent],
 })
-
-export class ImagesModule { }
+export class ImagesModule {}

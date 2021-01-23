@@ -4,9 +4,9 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 export const initialState: NewsState = {
   news: {
-      newsItems: [],
-      groups: ['IT', 'global', 'sport']
-  }
+    newsItems: [],
+    groups: ['IT', 'global', 'sport'],
+  },
 };
 
 // on(
@@ -56,65 +56,61 @@ const newsReducerInternal = createReducer(
     newsAction.sendNewsItemAction,
     newsAction.sendNewsItemFinishedAction,
     (state) => ({
-      ...state
+      ...state,
     })
   ),
   on(newsAction.recieveGroupJoinedAction, (state, { payload }) => {
-	  const { news } = state;
-	  const { newsItems, groups } = news;
-      return {
-        ...state,
-        news: {
-          newsItems,
-          groups: [...groups, payload]
-        }
-      };
-    }
-  ),
+    const { news } = state;
+    const { newsItems, groups } = news;
+    return {
+      ...state,
+      news: {
+        newsItems,
+        groups: [...groups, payload],
+      },
+    };
+  }),
   on(newsAction.recieveNewsItemAction, (state, { payload }) => {
-	  const { news } = state;
-	  const { newsItems, groups } = news;
-      return {
-        ...state,
-        news: {
-          newsItems: [...newsItems, payload],
-          groups
-        }
-      };
-    }
-  ),
+    const { news } = state;
+    const { newsItems, groups } = news;
+    return {
+      ...state,
+      news: {
+        newsItems: [...newsItems, payload],
+        groups,
+      },
+    };
+  }),
   on(newsAction.recieveNewsGroupHistoryAction, (state, { payload }) => {
-	  const { news } = state;
-	  const { newsItems, groups } = news;
-      return {
-        ...state,
-        news: {
-          newsItems: [...payload],
-          groups
-        }
-      };
-    }
-  ),
+    const { news } = state;
+    const { newsItems, groups } = news;
+    return {
+      ...state,
+      news: {
+        newsItems: [...payload],
+        groups,
+      },
+    };
+  }),
   on(newsAction.selectAllNewsGroupsFinishedAction, (state, { payload }) => {
-	  const { news } = state;
-	  const { newsItems, groups } = news;
-      return {
-        ...state,
-        news: {
-          newsItems,
-          groups: [...payload]
-        }
-      };
-    }
-  ),
+    const { news } = state;
+    const { newsItems, groups } = news;
+    return {
+      ...state,
+      news: {
+        newsItems,
+        groups: [...payload],
+      },
+    };
+  }),
   on(newsAction.recieveGroupLeftAction, (state, { payload }) => {
-	  const { news } = state;
+    const { news } = state;
     const { newsItems, groups } = news;
     const data = [];
     for (const entry of state.news.groups) {
-        if (entry !== payload) {
-            data.push(entry);
-        }
+      if (entry !== payload) {
+        data.push(entry);
+      }
     }
     console.log(data);
 
@@ -122,16 +118,12 @@ const newsReducerInternal = createReducer(
       ...state,
       news: {
         newsItems,
-        groups: [...data]
-      }
+        groups: [...data],
+      },
     };
-    }
-  ),
+  })
 );
 
-export function newsReducer(
-  state: NewsState | undefined,
-  action: Action
-): any {
+export function newsReducer(state: NewsState | undefined, action: Action): any {
   return newsReducerInternal(state, action);
 }
