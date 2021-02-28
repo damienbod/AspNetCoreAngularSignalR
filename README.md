@@ -18,6 +18,8 @@
 
 ## History
 
+2021-02-28: Updated .NET 5, Angular CLI
+
 2021-01-23: Updated .NET 5, updated ngrx implementation, latest CLI, prettier
 
 2020-12-06: Updated .NET 5, Angular CLI
