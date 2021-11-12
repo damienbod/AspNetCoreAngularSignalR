@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/9si04k3e5x2ksrj4?svg=true)](https://ci.appveyor.com/project/damienbod/aspnetcoreangularsignalr)
 
-## blogs ASP.NET Core 5:
+## blogs ASP.NET Core 6:
 
 <ul>	
 	
@@ -17,6 +17,8 @@
 </ul>
 
 ## History
+
+2021-11-12: Updated .NET 6, Angular
 
 2021-03-14: Updated .NET 5, Angular
 
