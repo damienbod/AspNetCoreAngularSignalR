@@ -326,3 +326,4 @@ src/AngularWebpackVisualStudio/wwwroot/
 src/AngularRedux/wwwroot
 src/AspNetCoreAngularSignalR/wwwroot/
 /src/AngularSignalR/dist/
+/src/AngularSignalR/.angular/cache/
