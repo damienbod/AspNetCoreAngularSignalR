@@ -21,4 +21,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Dtos\Dtos.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="news.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
