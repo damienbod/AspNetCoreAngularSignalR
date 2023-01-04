@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using System.Threading.Tasks;
 
-namespace AspNetCoreAngularSignalR.SignalRHubs
+namespace AspNetCoreAngularSignalR.SignalRHubs;
+
+public class LoopyHub : Hub
 {
-    public class LoopyHub : Hub
+    public Task Send(string data)
     {
-        public Task Send(string data)
-        {
-            return Clients.All.SendAsync("Send", data);
-        }
+        return Clients.All.SendAsync("Send", data);
     }
 }

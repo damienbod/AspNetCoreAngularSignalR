@@ -55,27 +55,27 @@ export class NewsService {
 
     this._hubConnection.on('Send', (newsItem: NewsItem) => {
       this.store.dispatch(
-        newsAction.recieveNewsItemAction({ payload: newsItem })
+        newsAction.receiveNewsItemAction({ payload: newsItem })
       );
     });
 
     this._hubConnection.on('JoinGroup', (data: string) => {
-      console.log('recieved data from the hub');
+      console.log('received data from the hub');
       console.log(data);
       this.store.dispatch(
-        newsAction.recieveGroupJoinedAction({ payload: data })
+        newsAction.receiveGroupJoinedAction({ payload: data })
       );
     });
 
     this._hubConnection.on('LeaveGroup', (data: string) => {
-      this.store.dispatch(newsAction.recieveGroupLeftAction({ payload: data }));
+      this.store.dispatch(newsAction.receiveGroupLeftAction({ payload: data }));
     });
 
     this._hubConnection.on('History', (newsItems: NewsItem[]) => {
-      console.log('recieved history from the hub');
+      console.log('received history from the hub');
       console.log(newsItems);
       this.store.dispatch(
-        newsAction.recieveNewsGroupHistoryAction({ payload: newsItems })
+        newsAction.receiveNewsGroupHistoryAction({ payload: newsItems })
       );
     });
   }

@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
+﻿namespace AspNetCoreAngularSignalR.Model;
 
-namespace AspNetCoreAngularSignalR.Model
+public class FileDescriptionShort
 {
-    public class FileDescriptionShort
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ICollection<IFormFile> File { get; set; }
-    }
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public ICollection<IFormFile>? File { get; set; }
 }

@@ -2,21 +2,40 @@
 
 [![.NET](https://github.com/damienbod/AspNetCoreAngularSignalR/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/AspNetCoreAngularSignalR/actions/workflows/dotnet.yml)
 
-## blogs ASP.NET Core 6:
+### ASP.NET Core 7
 
-<ul>	
-	
-<li><a href="https://damienbod.com/2017/09/12/getting-started-with-signalr-using-asp-net-core-and-angular/">Getting started with SignalR using ASP.NET Core and Angular</a></li>
-<li><a href="https://damienbod.com/2017/09/18/signalr-group-messages-with-ngrx-and-angular/">SignalR Group messages with ngrx and Angular</a></li>
-<li><a href="https://damienbod.com/2017/09/29/using-ef-core-and-sqlite-to-persist-signalr-group-messages-in-asp-net-core/">Using EF Core and SQLite to persist SignalR Group messages in ASP.NET Core</a></li>
-<li><a href="https://damienbod.com/2018/03/19/using-message-pack-with-asp-net-core-signalr/">Using Message Pack with ASP.NET Core SignalR</a> </li>
-<li><a href="https://damienbod.com/2018/05/13/uploading-and-sending-image-messages-with-asp-net-core-signalr/">Uploading and sending image messages with ASP.NET Core SignalR</a></li>		
-<li><a href="https://damienbod.com/2017/10/16/securing-an-angular-signalr-client-using-jwt-tokens-with-asp-net-core-and-identityserver4/">Securing an Angular SignalR client using JWT tokens with ASP.NET Core and IdentityServer4</a></li>
-<li><a href="https://damienbod.com/2017/10/23/implementing-custom-policies-in-asp-net-core-using-the-httpcontext/">Implementing custom policies in ASP.NET Core using the HttpContext</a></li>
-<li><a href="https://damienbod.com/2017/12/05/sending-direct-messages-using-signalr-with-asp-net-core-and-angular/">Sending Direct Messages using SignalR with ASP.NET core and Angular</a> </li>
-</ul>
+- [Getting started with SignalR using ASP.NET Core and Angular](https://damienbod.com/2017/09/12/getting-started-with-signalr-using-asp-net-core-and-angular/)
+- [SignalR Group messages with ngrx and Angular](https://damienbod.com/2017/09/18/signalr-group-messages-with-ngrx-and-angular/)
+- [Using EF Core and SQLite to persist SignalR Group messages in ASP.NET Core](https://damienbod.com/2017/09/29/using-ef-core-and-sqlite-to-persist-signalr-group-messages-in-asp-net-core/)
+- [Using Message Pack with ASP.NET Core SignalR](https://damienbod.com/2018/03/19/using-message-pack-with-asp-net-core-signalr/)
+- [Uploading and sending image messages with ASP.NET Core SignalR](https://damienbod.com/2018/05/13/uploading-and-sending-image-messages-with-asp-net-core-signalr/)	
+- [Securing an Angular SignalR client using JWT tokens with ASP.NET Core and IdentityServer4](https://damienbod.com/2017/10/16/securing-an-angular-signalr-client-using-jwt-tokens-with-asp-net-core-and-identityserver4/)
+- [Implementing custom policies in ASP.NET Core using the HttpContext](https://damienbod.com/2017/10/23/implementing-custom-policies-in-asp-net-core-using-the-httpcontext/)
+- [Sending Direct Messages using SignalR with ASP.NET core and Angular](https://damienbod.com/2017/12/05/sending-direct-messages-using-signalr-with-asp-net-core-and-angular/)
+- [Implementing User Management with ASP.NET Core Identity and custom claims](https://damienbod.com/2018/10/30/implementing-user-management-with-asp-net-core-identity-and-custom-claims/)
 
+## Run migrations
+
+### Console
+
+```
+dotnet ef migrations add init_hub_db -c NewsContext
+```
+
+### Powershell
+
+```
+Add-Migration "init_hub_db" -c NewsContext  
+```
+
+## Running manually
+
+```
+Update-Database -Context NewsContext
+```
 ## History
+
+2023-01-04: Updated to .NET 7 and Angular 15
 
 2022-01-28: Updated nuget packages
 
@@ -104,47 +123,4 @@ https://github.com/aspnet/SignalR#readme
 
 ## npm feed
 
-https://www.npmjs.com/package/@aspnet/signalr
 https://www.npmjs.com/package/msgpack5
-
-## MyGet feeds required for project if using the latest dev
-
-https://dotnet.myget.org/F/aspnetcore-ci-dev/api/v3/index.json
-
-https://dotnet.myget.org/F/aspnetcore-ci-dev/npm/
-https://dotnet.myget.org/feed/aspnetcore-ci-dev/package/npm/@aspnet/signalr-client
-
-## npm packages
-
-	"@microsoft/signalr": "3.0.0-preview7.19365.7",
-	"msgpack5": "4.2.1"
-
-
-# Production Build
-
-The new uglifyjs-webpack-plugin is required.
-
-## Step 1: 
-in the package.json add:
-
-"uglifyjs-webpack-plugin": "1.0.0-beta.2",
-
-## Step 2: 
-
-add the UglifyJSPlugin webpack plugin (S is capital), in the webpack production build file
-
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
-## Step 3: 
-
-Update the webpack production build
-
-```
-        new UglifyJSPlugin({
-            parallel: {
-                cache: true,
-                workers: 2
-            }
-        }),
-```
-

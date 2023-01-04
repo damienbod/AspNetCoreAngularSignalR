@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreAngularSignalR.Controllers
-{
-    public class FileClientController : Controller
-    {
-        public ActionResult Index()
-        {
-            ViewBag.Title = "Index Page";
+namespace AspNetCoreAngularSignalR.Controllers;
 
-            return View();
-        }
+public class FileClientController : Controller
+{
+    public ActionResult Index()
+    {
+        ViewBag.Title = "Index Page";
+
+        return View();
     }
 }
