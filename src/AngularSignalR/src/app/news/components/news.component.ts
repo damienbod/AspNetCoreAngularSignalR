@@ -13,7 +13,6 @@ import { select } from '@ngrx/store';
 })
 export class NewsComponent implements OnInit {
   public async: any;
-  isAuthorized = false;
   newsItem: NewsItem;
   newsItemHeader = '';
   newsItemNewsText= '';
@@ -55,6 +54,5 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     console.log('go');
     this.store.dispatch(newsAction.selectAllNewsGroupsAction());
-    console.log('IsAuthorized:' + this.isAuthorized);
   }
 }
