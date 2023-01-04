@@ -18,6 +18,8 @@
 
 ## History
 
+2023-01-04: Updated to .NET 7
+
 2022-01-28: Updated nuget packages
 
 2021-11-12: Updated .NET 6, Angular
