@@ -1,8 +1,7 @@
-﻿namespace AspNetCoreAngularSignalR.Providers
+﻿namespace AspNetCoreAngularSignalR.Providers;
+
+public class NewsGroup
 {
-    public class NewsGroup
-    {
-        public long Id { get; set; }
-        public string Name { get; set; }
-    }
+    public long Id { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

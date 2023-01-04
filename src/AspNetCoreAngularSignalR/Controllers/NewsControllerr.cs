@@ -1,36 +1,31 @@
-﻿using AspNetCoreAngularSignalR.SignalRHubs;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.Mvc;
 using AspNetCoreAngularSignalR.Providers;
 
-namespace AspNetCoreAngularSignalR.Controllers
+namespace AspNetCoreAngularSignalR.Controllers;
+
+[Route("api/[controller]")]
+public class NewsController : Controller
 {
-    [Route("api/[controller]")]
-    public class NewsController : Controller
+    private NewsStore _newsStore;
+
+    public NewsController(NewsStore newsStore)
     {
-        private NewsStore _newsStore;
+        _newsStore = newsStore;
+    }
 
-        public NewsController(NewsStore newsStore)
+    [HttpPost]
+    public IActionResult AddGroup([FromQuery] string group)
+    {
+        if (string.IsNullOrEmpty(group))
         {
-            _newsStore = newsStore;
+            return BadRequest();
         }
+        _newsStore.AddGroup(group);
+        return Created("AddGroup", group);
+    }
 
-        [HttpPost]
-        public IActionResult AddGroup([FromQuery] string group)
-        {
-            if (string.IsNullOrEmpty(group))
-            {
-                return BadRequest();
-            }
-            _newsStore.AddGroup(group);
-            return Created("AddGroup", group);
-        }
-
-        public List<string> GetAllGroups()
-        {
-            return _newsStore.GetAllGroups();
-        }
+    public List<string> GetAllGroups()
+    {
+        return _newsStore.GetAllGroups();
     }
 }

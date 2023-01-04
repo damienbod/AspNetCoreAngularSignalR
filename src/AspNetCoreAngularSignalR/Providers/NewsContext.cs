@@ -2,15 +2,14 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetCoreAngularSignalR.Providers
+namespace AspNetCoreAngularSignalR.Providers;
+
+public class NewsContext : DbContext
 {
-    public class NewsContext : DbContext
-    {
-        public NewsContext(DbContextOptions<NewsContext> options) :base(options)
-        { }
+    public NewsContext(DbContextOptions<NewsContext> options) :base(options)
+    { }
 
-        public DbSet<NewsItemEntity> NewsItemEntities { get; set; }
+    public DbSet<NewsItemEntity> NewsItemEntities { get; set; }
 
-        public DbSet<NewsGroup> NewsGroups { get; set; }
-    }
+    public DbSet<NewsGroup> NewsGroups { get; set; }
 }
