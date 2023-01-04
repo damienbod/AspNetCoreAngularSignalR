@@ -60,7 +60,7 @@ export class NewsService {
     });
 
     this._hubConnection.on('JoinGroup', (data: string) => {
-      console.log('recieved data from the hub');
+      console.log('received data from the hub');
       console.log(data);
       this.store.dispatch(
         newsAction.recieveGroupJoinedAction({ payload: data })
@@ -72,7 +72,7 @@ export class NewsService {
     });
 
     this._hubConnection.on('History', (newsItems: NewsItem[]) => {
-      console.log('recieved history from the hub');
+      console.log('received history from the hub');
       console.log(newsItems);
       this.store.dispatch(
         newsAction.recieveNewsGroupHistoryAction({ payload: newsItems })
