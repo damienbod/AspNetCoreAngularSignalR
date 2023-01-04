@@ -22,22 +22,20 @@ public class FileUploadController : Controller
     {
         if (ModelState.IsValid)
         {
-            foreach (var file in fileDescriptionShort.File)
+            foreach (var file in fileDescriptionShort.File!)
             {
                 if (file.Length > 0)
                 {
-                    using (var memoryStream = new MemoryStream())
+                    using var memoryStream = new MemoryStream();
+                    await file.CopyToAsync(memoryStream);
+
+                    var imageMessage = new ImageMessage
                     {
-                        await file.CopyToAsync(memoryStream);
+                        ImageHeaders = "data:" + file.ContentType + ";base64,",
+                        ImageBinary = memoryStream.ToArray()
+                    };
 
-                        var imageMessage = new ImageMessage
-                        {
-                            ImageHeaders = "data:" + file.ContentType + ";base64,",
-                            ImageBinary = memoryStream.ToArray()
-                        };
-
-                        await _hubContext.Clients.All.SendAsync("ImageMessage", imageMessage);
-                    }
+                    await _hubContext.Clients.All.SendAsync("ImageMessage", imageMessage);
                 }
             }
         }

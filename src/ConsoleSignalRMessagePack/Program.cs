@@ -22,34 +22,37 @@ class Program
     static async Task MainAsync()
     {
         await SetupSignalRHubAsync();
-        _hubConnection.On<MessageDto>("Send", (message) =>
+        if(_hubConnection == null )
         {
-            Console.WriteLine($"Received Message: {message.Name}");
-        });
-        Console.WriteLine("Connected to Hub");
-        Console.WriteLine("Press ESC to stop");
-        do
-        {
-            while (!Console.KeyAvailable)
+            IDisposable disposable = _hubConnection.On<MessageDto>("Send", (message) =>
             {
-                var message = Console.ReadLine();
-                if(message != null )
+                Console.WriteLine($"Received Message: {message.Name}");
+            });
+            Console.WriteLine("Connected to Hub");
+            Console.WriteLine("Press ESC to stop");
+            do
+            {
+                while (!Console.KeyAvailable)
                 {
-                    await _hubConnection.SendAsync("Send",
-                    new MessageDto
+                    var message = Console.ReadLine();
+                    if (message != null)
                     {
-                        Id = Guid.NewGuid(),
-                        Name = message,
-                        Amount = 7
-                    });
+                        await _hubConnection.SendAsync("Send",
+                        new MessageDto
+                        {
+                            Id = Guid.NewGuid(),
+                            Name = message,
+                            Amount = 7
+                        });
+                    }
+
+                    Console.WriteLine("SendAsync to Hub");
                 }
-
-                Console.WriteLine("SendAsync to Hub");
             }
-        }
-        while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
-        await _hubConnection.DisposeAsync();
+            await _hubConnection.DisposeAsync();
+        }
     }
 
     public static async Task SetupSignalRHubAsync()

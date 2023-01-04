@@ -1,23 +1,14 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreAngularSignalR
 {
 
     public class ValidateMimeMultipartContentFilter : ActionFilterAttribute
     {
-        private readonly ILogger _logger;
-
-        public ValidateMimeMultipartContentFilter(ILoggerFactory loggerFactory)
-        {
-            _logger = loggerFactory.CreateLogger("ctor ValidateMimeMultipartContentFilter");
-        }
-
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!IsMultipartContentType(context.HttpContext.Request.ContentType))
+            if (!IsMultipartContentType(context.HttpContext.Request.ContentType!))
             {
                 context.Result = new StatusCodeResult(415);
                 return;
@@ -28,7 +19,7 @@ namespace AspNetCoreAngularSignalR
 
         private static bool IsMultipartContentType(string contentType)
         {
-            return !string.IsNullOrEmpty(contentType) && contentType.IndexOf("multipart/", StringComparison.OrdinalIgnoreCase) >= 0;
+            return !string.IsNullOrEmpty(contentType) && contentType.Contains("multipart/", StringComparison.OrdinalIgnoreCase);
         }
     }
 }
