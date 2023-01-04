@@ -22,9 +22,9 @@ class Program
     static async Task MainAsync()
     {
         await SetupSignalRHubAsync();
-        if(_hubConnection == null )
+        if(_hubConnection != null )
         {
-            IDisposable disposable = _hubConnection.On<MessageDto>("Send", (message) =>
+            _hubConnection.On<MessageDto>("Send", (message) =>
             {
                 Console.WriteLine($"Received Message: {message.Name}");
             });
@@ -50,8 +50,6 @@ class Program
                 }
             }
             while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-
-            await _hubConnection.DisposeAsync();
         }
     }
 
