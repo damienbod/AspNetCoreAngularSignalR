@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetCoreAngularSignalR.Model;
+﻿namespace AspNetCoreAngularSignalR.Model;
 
 public class ImageMessage
 {

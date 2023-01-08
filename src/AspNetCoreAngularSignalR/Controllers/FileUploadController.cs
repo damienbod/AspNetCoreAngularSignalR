@@ -43,4 +43,3 @@ public class FileUploadController : Controller
         return Redirect("/FileClient/Index");
     }
 }
-
