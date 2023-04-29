@@ -33,6 +33,8 @@ Update-Database -Context NewsContext
 ```
 ## History
 
+2023-04-29: Updated nuget packages
+
 2023-01-08: Updated nuget packages
 
 2023-01-04: Updated to .NET 7 and Angular 15
